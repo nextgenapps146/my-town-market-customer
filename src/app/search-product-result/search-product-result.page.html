@@ -1,0 +1,45 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<div class="title_inner d-flex">
+				<h2 (click)="search()">{{ searchKey }}</h2>
+				<ion-icon class="zmdi zmdi-search ion-text-center end" (click)="search()"></ion-icon>
+			</div>
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="item_container">
+		<h2>{{ searchResults.length }} {{'result_found' | translate}}</h2>
+		<ion-row>
+			<ion-col size="6" *ngFor="let result of searchResults">
+				<div class="item" (click)="item_details(result.id)">
+					<div class="item_img center_img">
+						<img [src]="result.image" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>{{ result.name }}</h3>
+						<h4>{{ result.weight }}</h4>
+						<h5 class="d-flex">
+							<span class="price">{{ result.saleprice | currency: 'INR'}}</span>
+							<!-- <ion-badge class="end">
+											  4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+										  </ion-badge> -->
+							<!-- <div class="fixed"></div> -->
+							<app-add-item
+							  #addItem
+							  source="product"
+							  [item]="result"
+							  (addItemEvent)="onItemAdd($event)"
+							></app-add-item>
+						  </h5>
+					</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-content>

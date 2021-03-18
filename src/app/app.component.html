@@ -1,0 +1,130 @@
+<ion-app [dir]="rtlSide">
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-menu-toggle auto-hide="false">
+        <div class="profile_box" *ngIf="!isLoggedIn">
+          <h2>
+            <span class="name" (click)="login()">
+              {{ "login" | translate }}
+            </span>
+          </h2>
+        </div>
+        <div class="profile_box" *ngIf="isLoggedIn">
+          <h2>
+            <span class="name">{{ name }}</span>
+          </h2>
+          <h4>{{ phone }}</h4>
+        </div>
+      </ion-menu-toggle>
+
+      <ion-content fullscreen>
+        <ion-list lines="none">
+          <!-- <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item
+              mode="ios"
+              detail="false"
+              [routerDirection]="'root'"
+              [routerLink]="[p.url]"
+            >
+              <div class="item_inner d-flex">
+                <ion-icon slot="start" [class]="p.icon"></ion-icon>
+                <h2>{{ p.title | translate }}</h2>
+              </div>
+            </ion-item>
+          </ion-menu-toggle> -->
+          <ion-menu-toggle auto-hide="false">
+            <ion-item
+              mode="ios"
+              detail="false"
+              [routerDirection]="'root'"
+              [routerLink]="'/home'"
+            >
+              <div class="item_inner d-flex">
+                <ion-icon slot="start" class="zmdi zmdi-home"></ion-icon>
+                <h2>{{ "home" | translate }}</h2>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item
+              mode="ios"
+              detail="false"
+              [routerDirection]="'root'"
+              [routerLink]="'/faq'"
+            >
+              <div class="item_inner d-flex">
+                <ion-icon slot="start" class="zmdi zmdi-alert-circle"></ion-icon>
+                <h2>faq</h2>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="isLoggedIn">
+            <ion-item
+              mode="ios"
+              detail="false"
+              [routerDirection]="'root'"
+              [routerLink]="'/my-profile'"
+            >
+              <div class="item_inner d-flex">
+                <ion-icon
+                  slot="start"
+                  class="zmdi zmdi-assignment-account"
+                ></ion-icon>
+                <h2>{{ "my_profile" | translate }}</h2>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="isLoggedIn">
+            <ion-item
+              mode="ios"
+              detail="false"
+              [routerDirection]="'root'"
+              [routerLink]="'/my-orders'"
+            >
+              <div class="item_inner d-flex">
+                <ion-icon
+                  slot="start"
+                  class="zmdi zmdi-shopping-cart"
+                ></ion-icon>
+                <h2>{{ "my_orders" | translate }}</h2>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item
+              mode="ios"
+              detail="false"
+              [routerDirection]="'root'"
+              [routerLink]="'/offers'"
+           
+            >
+              <div class="item_inner d-flex">
+                <ion-icon slot="start" class="zmdi zmdi-label"></ion-icon>
+                <h2>{{ "offers" | translate }}</h2>
+              </div>
+            </ion-item>
+            
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="isLoggedIn">
+            <ion-item mode="ios" detail="false" (click)="logout()">
+              <div class="item_inner d-flex">
+                <ion-icon slot="start" class="zmdi zmdi-open-in-new"></ion-icon>
+                <h2>{{ "logout" | translate }}</h2>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <!-- <div class="buy_this_app" *ngIf="config.showBuyPromt" (click)="buyAppAction()">
+                        <h2>
+                            <ion-icon class="zmdi zmdi-shopping-cart"></ion-icon>
+                            {{"buy_this_app" | translate}}
+                        </h2>
+                    </div> -->
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet
+      id="main-content"
+      (activate)="onActivate()"
+    ></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

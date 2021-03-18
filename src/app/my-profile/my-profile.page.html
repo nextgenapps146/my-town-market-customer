@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+  <div class="page_info">
+    <h2>My Account</h2>
+  </div>
+  <ion-card>
+    <div class="form">
+      <h2>{{'my_profile' | translate}}</h2>
+      <ion-list lines="none">
+        <ion-item lines="none">
+          <ion-label mode="md" position="stacked"
+            >{{"full_name" | translate}}</ion-label
+          >
+          <ion-input
+            mode="md"
+            type="name"
+            [value]="userName"
+            readonly="true"
+          ></ion-input>
+        </ion-item>
+
+        <!-- <ion-item lines="none">
+					<ion-label mode="md" position="stacked">{{"email_address" | translate}}</ion-label>
+					<ion-input mode="md" type="email" value="samanthasmith@mail.com" readonly="true"></ion-input>
+				</ion-item> -->
+
+        <ion-item lines="none">
+          <ion-label mode="md" position="stacked"
+            >{{"phone_number" | translate}}</ion-label
+          >
+          <ion-input
+            mode="md"
+            type="text"
+            [value]="userPhone"
+            readonly="true"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-card>
+  <ion-card class="my_addresses">
+    <div class="form">
+      <h2>{{'my_addresses' | translate}}</h2>
+      <ion-list *ngIf="addresses.length > 0">
+        <ion-item *ngFor="let address of addresses; let i = index">
+          <div class="item_inner">
+            <div class="text_box">
+              <h3 class="d-flex" (click)="deleteAddress(i, $event)">
+                <ion-icon class="zmdi zmdi-delete ion-text-end end"></ion-icon>
+              </h3>
+              <p>{{ address.fullAddress }}</p>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <ion-list *ngIf="addresses.length === 0">
+        <ion-item lines="none">
+          <div class="item_inner">
+            <div class="text_box">
+              <p>No addresses</p>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-card>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-button size="large" shape="full" class="btn" (click)="add_address()">
+    {{'add_address' | translate}}
+  </ion-button>
+</ion-footer>

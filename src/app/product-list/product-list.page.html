@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+    <div class="right_icons" slot="end">
+      <span class="end search_icon" (click)="search()">
+        <ion-icon name="search"></ion-icon>
+      </span>
+      <span class="end" (click)="cart()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge *ngIf="totalQuantity > 0">{{ totalQuantity }}</ion-badge>
+      </span>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-header>
+	<div class="form">
+		<ion-list lines="none">
+			<ion-row>
+				<ion-col size="6">
+					<ion-item>
+						<div class="item_inner d-flex">
+							<ion-checkbox></ion-checkbox>
+							<h3>Farmers</h3>
+						</div>
+					</ion-item>
+				</ion-col>
+
+				<ion-col size="6">
+					<ion-item>
+						<div class="item_inner d-flex">
+							<ion-checkbox checked="true"></ion-checkbox>
+							<h3>Trabors</h3>
+						</div>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-list>
+	</div>
+</ion-header> -->
+
+<ion-content>
+  <div class="page_info">
+    <h2>{{ categoryName }}</h2>
+  </div>
+  <div class="item_container">
+    <ion-row>
+      <ion-col size="6" *ngFor="let product of productList">
+        <div class="item">
+          <div class="item_img center_img">
+            <img [src]="product.image" class="crop_img" />
+          </div>
+          <div class="item_details">
+            <h3>{{ product.name }}</h3>
+            <h4>{{ product.weight }}</h4>
+            <h5 class="d-flex">
+              <span class="price">{{ product.saleprice | currency: 'INR'}}</span>
+              <!-- <ion-badge class="end">
+								4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge> -->
+              <!-- <div class="fixed"></div> -->
+              <app-add-item
+                #addItem
+                source="product"
+                [item]="product"
+                (addItemEvent)="onItemAdd($event)"
+              ></app-add-item>
+            </h5>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

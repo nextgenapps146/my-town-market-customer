@@ -1,0 +1,8 @@
+{
+  "name": "customer",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "76210c89"
+}

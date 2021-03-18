@@ -1,0 +1,925 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <div class="right_icons" slot="end">
+            <span class="end search_icon" (click)="search()">
+                <ion-icon name="search"></ion-icon>
+            </span>
+            <span class="end" (click)="cart()">
+                <ion-icon name="cart"></ion-icon>
+                <ion-badge *ngIf="totalQuantity > 0">{{ totalQuantity }}</ion-badge>
+            </span>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="page_info">
+        <h1>{{ storeInfo?.name }}</h1>
+        <p>{{ storeInfo?.streetaddress }}</p>
+    </div>
+    <!-- <div class="banner">
+		<ion-slides pager="true" loop="true">
+			<ion-slide>
+				<div class="img_box center_img">
+					<img [src]="assets/images/Banner1.png" class="crop_img">
+				</div>
+			</ion-slide>
+		</ion-slides>
+    </div> -->
+
+    <div class="store_settings">
+        <div class="float-left">
+            <span class="pill" *ngIf="storeInfo?.isdelivery">Delivery</span>
+            <span class="pill" *ngIf="storeInfo?.iscurbsidepickup">Pickup</span>
+        </div>
+        <!-- <div class="contact float-right">+91-9849251659</div> -->
+    </div>
+
+    <div class="delivery_options">
+        <div class="float-left">
+            <ion-icon name="pin"></ion-icon>
+            <span *ngIf="storeInfo?.freedelivery !== 'Free'">Free delivery on {{ storeInfo?.freedelivery }}</span>
+            <span *ngIf="storeInfo?.freedelivery === 'Free'">Free delivery</span>
+        </div>
+    </div>
+
+    <div class="next_delivery">
+        <ion-icon name="bus"></ion-icon>
+        Next delivery - {{ storeInfo?.deliveryduration }}
+    </div>
+
+    <div class="items_container">
+        <h2>Categories</h2>
+        <div class="category_row" *ngIf="categoryInfo">
+            <div class="category" *ngFor="let category of categoryInfo"
+                (click)="showProductsFromCategory(category.id, category.name)">
+                <div class="img_box center_img">
+                    <img [src]="category.image" class="crop_img" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="items_container">
+        <h2>Popular Products</h2>
+        <div class="items_row">
+            <div class="item" *ngFor="let product of popularProducts">
+                <div class="item_img center_img">
+                    <img [src]="product.image" class="crop_img" />
+                </div>
+                <div class="item_details">
+                    <h3>{{ product.name }}</h3>
+                    <h4>{{ product.weight }}</h4>
+                    <h5 class="d-flex">
+                        <span class="price">{{ product.saleprice | currency: 'INR'}}</span>
+                        <div class="fixed"></div>
+                        <app-add-item #addItem source="product" [item]="product" (addItemEvent)="onItemAdd($event)">
+                        </app-add-item>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="items_container">
+		<h2>Vegetables Near You</h2>
+		<div class="items_row">
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_8.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Potato</h3>
+					<h4>1 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Green Beans</h3>
+					<h4>20 Kgs</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_7.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Ladies finger</h3>
+					<h4>2 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+                        </ion-badge>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+		</div>
+	</div> -->
+
+	<!-- <div class="items_container">
+		<h2>Featured Products</h2>
+		<div class="items_row">
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_4.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Conliflwer</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Garlic</h3>
+					<h4>Operun England</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/1.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Onions</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/2.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Tomatoes</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$44.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/1.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Onions</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/2.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Tomatoes</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$44.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Garlic</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/1.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Onions</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/2.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Tomatoes</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$44.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Garlic</h3>
+					<h4>Operun England</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="items_container">
+		<h2>Recent Searches</h2>
+		<div class="items_row">
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/1.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Onions</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/2.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Tomatoes</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$44.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Garlic</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+                        <div class="fixed"></div>
+                        <span class="add_remove_btn">
+							<small class="remove">-</small>
+							<strong class="ion-text-center">1</strong>
+							<small class="add">+</small>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Garlic</h3>
+					<h4>Operun England</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+						</ion-badge>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/1.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Onions</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$30.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+						</ion-badge>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/2.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Red Tomatoes</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$44.00</span>
+						<ion-badge class="end">
+							3.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+						</ion-badge>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Garlic</h3>
+					<h4>20 KGs</h4>
+					<h5 class="d-flex">
+						<span class="price">$35.00</span>
+						<ion-badge class="end">
+							3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+						</ion-badge>
+					</h5>
+				</div>
+			</div>
+			<div class="item" (click)="item_details()">
+				<div class="item_img center_img">
+					<img src="assets/images/item_6.png" class="crop_img">
+				</div>
+				<div class="item_details">
+					<h3>Fresh Garlic</h3>
+					<h4>Operun England</h4>
+					<h5 class="d-flex">
+						<span class="price">$42.00</span>
+						<ion-badge class="end">
+							4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+						</ion-badge>
+					</h5>
+				</div>
+			</div>
+		</div>
+	</div> -->
+</ion-content>

@@ -1,0 +1,410 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<div class="title_inner d-flex">
+				<span class="center_title">Seeds</span>
+				<h3 class="end">
+					<ion-icon class="zmdi zmdi-check ion-text-start" (click)="item()"></ion-icon>
+
+					<span class="end cart_icon" (click)="cart()">
+						<ion-icon class="zmdi zmdi-mall ion-text-start"></ion-icon>
+						<ion-badge>2</ion-badge>
+					</span>
+				</h3>
+			</div>
+		</ion-title>
+	</ion-toolbar>
+	
+	<div class="form">
+		<ion-list lines="none">
+			<ion-row>
+				<ion-col size="6">
+					<ion-item>
+						<div class="item_inner d-flex">
+							<ion-checkbox></ion-checkbox>
+							<h3>Farmers</h3>
+						</div>
+					</ion-item>
+				</ion-col>
+				
+				<ion-col size="6">
+					<ion-item>
+						<div class="item_inner d-flex">
+							<ion-checkbox checked="true"></ion-checkbox>
+							<h3>Trabors</h3>
+						</div>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-list>
+	</div>
+</ion-header>
+
+<ion-content>
+	<div class="item_container">
+		<ion-row>
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/1.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Pine Seeds</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$30.00</span>
+							<ion-badge class="end">
+								4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/2.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Wheat Grains</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$44.00</span>
+							<ion-badge class="end">
+								3.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item3.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item_6.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/1.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Pine Seeds</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$30.00</span>
+							<ion-badge class="end">
+								4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/2.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Wheat Grains</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$44.00</span>
+							<ion-badge class="end">
+								3.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item3.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item_6.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/1.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Pine Seeds</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$30.00</span>
+							<ion-badge class="end">
+								4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/2.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Wheat Grains</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$44.00</span>
+							<ion-badge class="end">
+								3.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item3.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item_6.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/1.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Pine Seeds</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$30.00</span>
+							<ion-badge class="end">
+								4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/2.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Wheat Grains</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$44.00</span>
+							<ion-badge class="end">
+								3.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item3.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item_6.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/1.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Pine Seeds</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$30.00</span>
+							<ion-badge class="end">
+								4.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/2.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Wheat Grains</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$44.00</span>
+							<ion-badge class="end">
+								3.2 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item3.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+
+
+			<ion-col size="6">
+				<div class="item" (click)="item_details()">
+					<div class="item_img center_img">
+						<img src="assets/images/item_6.png" class="crop_img">
+					</div>
+					<div class="item_details">
+						<h3>Grain Wheat</h3>
+						<h4>20 KGs</h4>
+						<h5 class="d-flex">
+							<span class="price">$35.00</span>
+							<ion-badge class="end">
+								3.7 <ion-icon class="zmdi zmdi-star"></ion-icon>
+							</ion-badge>
+						</h5>
+					</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-content>

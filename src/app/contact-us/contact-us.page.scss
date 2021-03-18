@@ -1,0 +1,48 @@
+.banner {
+	display: flex;
+	align-self: center;
+	width: 100%;
+	height: 230px;
+
+	.logo {
+		width: 120px; 
+		margin: auto;
+		text-align: center;
+
+	}
+}
+
+.form {
+	padding-top: 26px;
+
+	p {
+		margin: 0;
+		font-size: 1.3rem;
+		font-weight: 500;
+		padding-bottom: 30px;
+	}
+
+	ion-list {
+		ion-item {
+			margin-bottom: 16px;
+
+			ion-label {
+				font-weight: 400;
+				font-size: 1.35rem !important;
+				margin-bottom: 19px !important;
+			}
+
+			ion-input {
+				font-weight: 500 !important;
+				letter-spacing: 0;
+			}
+
+			ion-textarea {
+				margin-top: 0;
+				font-weight: 400 !important;
+				letter-spacing: 0;
+			}
+		}
+	}
+
+}

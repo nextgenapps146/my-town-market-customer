@@ -1,0 +1,46 @@
+<!-- <span class="position-absolute btns-main-wrap"> -->
+    <!-- <div *ngIf="workingOnItem" class="border rounded pl-2 pr-2"
+        style="box-shadow: -4px 7px 16px 0px; background-color: rgba(255, 255, 255, 0.9)">
+        <span class="btn btn-outline-primary p-0 border-0 mb-1" (click)="minusBtnClick($event)">
+            <i class="iconsminds-remove-basket" style="font-size: 19px;"></i>
+        </span>
+        <span style="font-size: 13px;" class="pt-1 pl-3 pr-3 mb-0 pb-1">{{ quantity }}</span>
+        <span class="btn btn-outline-primary p-0 border-0 mb-1" style="margin-bottom: 6px!important;" (click)="plusBtnClick($event)">
+            <i class="iconsminds-add-basket" style="font-size: 19px;"></i>
+        </span>
+    </div>
+    <h1 *ngIf="!workingOnItem && quantity === 0"class="btn btn-outline-primary p-0 border-0" (click)="plusBtnClick($event)">
+        <i class="iconsminds-add-basket" style="font-size: 23px;"></i>
+    </h1>
+    <span *ngIf="!workingOnItem && quantity > 0"class="btn btn-primary" style="padding: 3px 9px!important" (click)="plusBtnClick($event)">
+        <b style="font-size: 12px;">{{quantity}}</b>
+    </span> -->
+    <span class="btns-main-wrap add_remove_btn adding" *ngIf="!isCart && quantity > 0 && showBackdrop">
+        <small class="remove" (click)="minusBtnClick($event)">-</small>
+        <strong class="ion-text-center">{{quantity}}</strong>
+        <small class="add"(click)="plusBtnClick($event)">+</small>
+    </span>
+    <span class="btns-main-wrap add_remove_btn" *ngIf="!isCart && !showBackdrop" (click)="plusBtnClick($event)">
+        <small class="add primary" *ngIf="quantity > 0">
+            <strong>{{quantity}}</strong>
+        </small>
+        <small class="add primary" *ngIf="quantity === 0">+</small>
+    </span>
+    <div class="fixed-modal" *ngIf="showBackdrop && !isCart" (click)="showBackdrop=false"></div>
+
+    <span class="btns-main-wrap add_remove_btn adding cart" *ngIf="isCart && quantity > 0">
+        <small class="remove" (click)="minusBtnClick($event)">-</small>
+        <strong class="ion-text-center">{{quantity}}</strong>
+        <small class="add"(click)="plusBtnClick($event)">+</small>
+    </span>
+
+
+<!-- </span>
+
+<div class="fixed-modal" *ngIf="showBackdrop" (click)="showBackdrop=false"></div> -->
+
+<!-- <span class="add_remove_btn">
+    <small class="remove">-</small>
+    <strong class="ion-text-center">1</strong>
+    <small class="add">+</small>
+</span> -->

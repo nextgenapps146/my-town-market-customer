@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+  <div class="page_info">
+    <h1>Select Location</h1>
+  </div>
+  <ion-card>
+    <div class="form">
+      <ion-list lines="none">
+        <ion-item lines="none">
+          <ion-label mode="md" position="stacked">Town / City</ion-label>
+          <ion-select
+            name="city"
+            placeholder="Select One"
+            interface="popover"
+            [(ngModel)]="selectedCity"
+            (ionChange)="setCity()"
+          >
+            <ion-select-option [value]="city" *ngFor="let city of cities"
+              >{{ city }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label mode="md" position="stacked">Locality</ion-label>
+          <ion-select
+            name="locality"
+            placeholder="Select One"
+            [(ngModel)]="selectedLocality"
+            okText="Okay"
+          >
+            <ion-select-option
+              [value]="locality"
+              *ngFor="let locality of localities"
+              >{{ locality }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-button
+        size="large"
+        expand="full"
+        class="btn"
+        (click)="confirmLocation()"
+        >{{'save' | translate}}</ion-button
+      >
+    </div>
+  </ion-card>
+</ion-content>

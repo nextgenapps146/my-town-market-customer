@@ -1,0 +1,54 @@
+ion-header ion-toolbar ion-title {
+	color: var(--text-dark-primary);
+	font-weight: 500;
+	font-size: 1rem;
+}
+
+.banner {
+	display: flex;
+	align-self: center;
+	width: 100%;
+	height: 230px;
+
+	.logo {
+		width: 120px;
+		margin: 25px auto 0 auto;
+		text-align: center;
+	}
+}
+
+ion-footer {
+	h2 {
+		margin: 0;
+		color: var(--text-dark-primary);
+		font-size: 1.15rem;
+		padding-bottom: 45px;
+	}
+
+	ion-row {
+		ion-col {
+			padding: 0;
+
+			.button.btn {
+				text-transform: capitalize;
+                font-weight: 400;
+
+				&.facebook {
+					--background: #3b45c1;
+				}
+
+				&.google {
+					--background: #ff452c;
+				}
+			}
+		}
+	}
+}
+
+.form {
+	padding-bottom: 17px;
+}
+
+.button.btn {
+    padding: 0 15px;
+}

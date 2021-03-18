@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="page_info">
+    <h2>My Cart</h2>
+  </div>
+  <ion-list lines="none">
+    <ion-item *ngFor="let item of items">
+      <div class="item_inner d-flex">
+        <div class="img_box center_img">
+          <img [src]="item.image" class="crop_img" />
+        </div>
+        <div class="text_box">
+          <h2>{{ item.name }}</h2>
+          <h3>{{ item.weight }}</h3>
+          <h4 class="d-flex">
+            <app-add-item
+              source="cart"
+              [item]="item"
+              isCart=true
+              (updateItemEvent)="onItemUpdate(item)"
+            ></app-add-item>
+            <span class="end">{{ (item.saleprice * item.orderQuantity) | currency: 'INR'}}</span>
+          </h4>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <div class="form">
+    <ion-item lines="none">
+      <ion-input
+        mode="md"
+        type="name"
+        placeholder="{{'add_promocode' | translate}}"
+      ></ion-input>
+      <h3 slot="end">{{'apply' | translate}}</h3>
+    </ion-item>
+    <div class="payment_details">
+      <h3 class="d-flex">
+        {{'cart_total' | translate}} <span class="end"> {{ totalPrice | currency: 'INR'}}</span>
+      </h3>
+      <h3 class="d-flex">
+        {{'delivery_fee' | translate}} <span class="end"> {{ deliveryFee | currency: 'INR' }}</span>
+      </h3>
+      <h3 class="d-flex">
+        {{'promocode' | translate}} <span class="end">-  {{ discount | currency: 'INR' }}</span>
+      </h3>
+    </div>
+    <h2 class="d-flex" (click)="select_address()">
+      {{'checkout_now' | translate}}
+      <span class="end">
+        <small class="ion-text-start">{{'total' | translate}}</small>
+         {{ finalPrice | currency: 'INR'}}
+        <ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+      </span>
+    </h2>
+  </div>
+</ion-footer>

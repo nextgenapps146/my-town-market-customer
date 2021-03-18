@@ -1,0 +1,35 @@
+.banner {
+	display: flex;
+	align-self: center;
+	width: 100%;
+	height: 250px;
+
+	.logo {
+		width: 120px;
+		margin: auto;
+		text-align: center;
+
+	}
+}
+
+.container {
+	padding: 0 19px;
+
+	h2 {
+		margin: 0;
+		color: var(--text-light);
+		text-transform: uppercase;
+		font-size: 1rem;
+		letter-spacing: 1px;
+		padding-bottom: 18px;
+	}
+
+	p {
+		margin: 0;
+		padding-bottom: 15px;
+		color: var(--text-black);
+		font-size: .95rem;
+		line-height: 21px;
+		font-weight: 400;
+	}
+}

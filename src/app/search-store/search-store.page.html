@@ -1,0 +1,130 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<div class="title_inner d-flex">
+				<ion-searchbar mode="md" class="ion-no-padding" searchIcon="hide" placeholder="{{'search_store' | translate}}" [(ngModel)]="searchText"></ion-searchbar>
+				<ion-icon class="zmdi zmdi-search ion-text-start end" (click)="search()"></ion-icon>
+			</div>
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+	<div class="recent_searches" *ngIf="recentSearches.length > 0">
+		<h2>{{'recent_searches' | translate}}</h2>
+		<h3 class="d-flex" (click)="search_result(search)" *ngFor="let search of recentSearches">
+			<ion-icon class="zmdi zmdi-time-restore"></ion-icon> {{ search }}
+		</h3>
+	</div>
+
+	<div class="choose_category">
+		<h2>{{'choose_category' | translate}}</h2>
+		<div class="category_row">
+			<div class="category fashion" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Jackets.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category phones" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Phones.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category furniture" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Furniture.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category electronics" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Electronics.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category fashion" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Jackets.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category phones" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Phones.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category furniture" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Furniture.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category electronics" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Electronics.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category fashion" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Jackets.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category phones" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Phones.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category furniture" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Furniture.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category electronics" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Electronics.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category fashion" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Jackets.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category phones" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Phones.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category furniture" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Furniture.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category electronics" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Electronics.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category fashion" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Jackets.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category phones" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Phones.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category furniture" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Furniture.png" class="crop_img">
+				</div>
+			</div>
+			<div class="category electronics" (click)="item()">
+				<div class="img_box center_img">
+					<img src="assets/images/Electronics.png" class="crop_img">
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</ion-content>

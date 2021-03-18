@@ -1,0 +1,40 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="page_info">
+        <h2>Contact us</h2>
+    </div>
+	<div class="banner">
+		<div class="logo">
+			<!-- <img src="assets/images/userlogo.png"> -->
+		</div>
+	</div>
+	<div class="form">
+		<p> {{'let_us_know_your_feedback' | translate}}<br>{{'queries_or_issue_regarding' | translate}}<br>{{'app_or_festures' | translate}}</p>
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"full_name" | translate}}</ion-label>
+				<ion-input mode="md" type="name" placeholder="{{'enter_full_name' | translate}}" value="Samantha Smith"></ion-input>
+			</ion-item>
+			<ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"phone_number" | translate}}</ion-label>
+				<ion-input mode="md" type="text" placeholder="{{'enter_phone_number' | translate}}" value="+1 987 654 3210"></ion-input>
+			</ion-item>
+
+			<ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"your_feedback" | translate}}</ion-label>
+				<ion-textarea rows="1" mode="md" type="text" placeholder="{{'enter_your_message' | translate}}"></ion-textarea>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>
+<ion-footer class="ion-no-border">
+	<ion-button size="large" shape="full" class="btn">
+		{{'submit' | translate}}
+	</ion-button>
+</ion-footer>

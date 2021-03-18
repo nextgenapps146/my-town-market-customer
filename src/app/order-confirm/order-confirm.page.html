@@ -1,0 +1,59 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="page_info">
+        <h2>Confirm Order</h2>
+    </div>
+    <div class="order_steps">
+		<ion-row>
+			<ion-col class="active">
+				<ion-icon class="zmdi zmdi-pin"></ion-icon>
+			</ion-col>
+			<ion-col class="active">
+				<h3>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+				</h3>
+			</ion-col>
+			<ion-col class="active">
+				<ion-icon class="zmdi zmdi-card"></ion-icon>
+			</ion-col>
+			<ion-col class="active">
+				<h3>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+				</h3>
+			</ion-col>
+			<ion-col class="active">
+				<ion-icon class="zmdi zmdi-assignment-check"></ion-icon>
+			</ion-col>
+		</ion-row>
+	</div>
+	<div class="container ion-text-center">
+		<div class="img_box">
+			<img src="assets/images/order_confirm.png">
+		</div>
+		<div class="text_box">
+		<h2>{{'your_order_has_been' | translate}}<br>{{'placed_successfully' | translate}}</h2>
+			<p>{{'you_cant_check_your_order_process_in_my' | translate}}<br>{{'orders_section' | translate}}</p>
+			<h3 (click)="my_orders()">{{'my_orders' | translate}}</h3>
+		</div>
+	</div>
+</ion-content>
+<ion-footer class="ion-no-border">
+	<ion-button size="large" shape="full" class="btn" (click)="home()"> {{'continue_shopping' | translate}} </ion-button>
+</ion-footer>

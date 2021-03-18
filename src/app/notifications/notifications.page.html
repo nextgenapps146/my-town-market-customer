@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+    <div class="page_info">
+        <h2>Notifications</h2>
+    </div>
+
+	<ion-list lines="none" *ngIf="notifications?.length > 0">
+
+        <ion-item *ngFor="let notification of notifications">
+			<div class="item_inner">
+				<div class="item_info">
+					<div class="item_header d-flex">
+						<div class="text_box">
+							<h2 class="d-flex">
+								Order {{ notification.status }}
+								<span class="end ion-text-end">
+									<small>{{ notification.createdon.toDate() | date:'medium' }}</small>
+								</span>
+                            </h2>
+							<h3>{{ notification.message }} </h3>
+						</div>
+					</div>
+				</div>
+			</div>
+        </ion-item>
+
+	</ion-list>
+
+	<ion-list lines="none" *ngIf="notifications?.length === 0">
+		<ion-item>
+			No notifications
+		</ion-item>
+	</ion-list>
+
+</ion-content>

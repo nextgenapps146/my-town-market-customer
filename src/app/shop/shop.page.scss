@@ -1,0 +1,203 @@
+.search_icon {
+    margin-right: 20px!important;
+}
+
+.banner {
+	margin-bottom: 18px;
+
+	ion-slides {
+		ion-slide {
+			.img_box {
+				width: 100%;
+				height: 150px;
+			}
+		}
+	}
+}
+
+.store_settings {
+    padding: 0 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+
+    .contact {
+        padding: 5px 10px;
+        display: inline-block;
+        color: var(--text-dark-primary);
+    }
+}
+
+.delivery_options {
+    padding: 0 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    width: 70%;
+    color: var(--text-dark-primary);
+    font-weight: bold;
+}
+
+.next_delivery {
+    padding: 0 15px;
+    overflow: hidden;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+    text-align: right;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.category_row {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 15px 0 10px 0;
+
+
+    .category {
+        display: inline-block;
+        margin: 0 6px;
+        border-radius: 15px;
+        overflow: hidden;
+
+        .img_box {
+            width: 90px;
+            height: 90px;
+
+            h2 {
+                margin: 0;
+                color: var(--white);
+                text-transform: uppercase;
+                position: relative;
+                z-index: 1;
+                font-size: .65rem;
+                padding: 10px 7px;
+                letter-spacing: .5px;
+                font-weight: 500;
+            }
+        }
+
+        &:first-child {
+            margin-left: 14px;
+        }
+
+        &:last-child {
+            margin-right: 14px;
+        }
+    }
+}
+
+.items_container {
+	margin-bottom: 15px;
+
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		font-weight: 600;
+		padding: 0px 15px 15px 15px;
+	}
+
+	.items_row {
+		width: 100%;
+		white-space: nowrap;
+		overflow-x: auto;
+		padding: 0px 0 10px 0;
+
+		.item {
+			display: inline-block;
+			margin: 0 6px;
+			overflow: hidden;
+			width: 147px;
+            position: relative;
+
+			.item_img {
+				width: 110px;
+                height: 110px;
+                border-radius: 8px;
+                margin-top: 35px;
+            }
+
+            .add_remove_btn {
+                position: absolute;
+                top: 0;
+            }
+
+			.item_details {
+				padding-top: 12px;
+				width: 100%;
+				overflow: hidden;
+
+				h3 {
+					margin: 0;
+					color: var(--text-dark-primary);
+					font-size: .9rem;
+					font-weight: 500;
+					padding-bottom: 3px;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+
+				h4 {
+					margin: 0;
+					color: var(--text-light);
+					font-weight: 400;
+					font-size: .7rem;
+					padding-bottom: 8px;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+				}
+
+				h5 {
+					margin: 0;
+					font-size: 1.1rem;
+					color: var(--text-black);
+
+					ion-badge {
+						background: var(--secondary);
+						--background: var(--transparent);
+						--color: var(--white);
+						--padding-bottom: 0;
+						--padding-end: 0;
+						--padding-start: 0;
+						--padding-top: 0;
+						border-radius: 50px;
+						font-weight: 400;
+						font-size: .7rem;
+						min-width: 41px;
+						height: 18px;
+						line-height: 18px;
+
+						ion-icon {
+							font-size: 0.6rem;
+							position: relative;
+							top: 1px;
+						}
+
+					}
+				}
+			}
+
+			&:first-child {
+				margin-left: 14px;
+			}
+
+			&:last-child {
+				margin-right: 14px;
+			}
+		}
+	}
+}
+
+.fixed-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: #000;
+    z-index: 999;
+    right: 0;
+}

@@ -1,0 +1,129 @@
+ion-header {
+    padding-top: 20px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 120px);
+        background: url(../../assets/images/header_bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: block;
+    }
+
+    ion-toolbar {
+        ion-buttons ion-back-button {
+            --color: var(--white) !important;
+        }
+
+        ion-title {
+            color: var(--white);
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1.3rem;
+        }
+    }
+
+    .banner {
+        position: relative;
+        z-index: 99;
+        padding: 0 20px;
+        padding-top: 22px;
+
+        .img_box {
+            width: 115px;
+            height: 115px;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        .text_box {
+            padding-top: 15px;
+
+            h2 {
+                margin: 0;
+                color: var(--text-dark-secondary);
+                font-size: 1.15rem;
+                padding-bottom: 9px;
+            }
+
+            h3 {
+                margin: 0;
+                color: var(--text-light);
+                font-weight: 400;
+                font-size: .9rem;
+                letter-spacing: .5px;
+            }
+        }
+    }
+}
+
+.give_rating {
+    border-bottom: 5px solid var(--bg-color);
+    padding-top: 39px;
+    padding-bottom: 20px;
+
+    h2 {
+        margin: 0;
+        color: var(--text-light);
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        font-weight: 500;
+        padding-bottom: 17px;
+    }
+
+    .icon_box {
+        display: flex;
+        align-items: center;
+        margin: auto;
+        width: fit-content;
+
+        .icon_box {
+            ion-icon {
+                color: #E0E0DD;
+                font-size: 2.2rem;
+
+            }
+
+            &.active {
+                ion-icon {
+                    color: var(--yelow_color);
+                }
+
+            }
+        }
+
+    }
+}
+
+.form {
+    padding-top: 26px;
+
+    ion-list {
+        ion-item {
+            margin-bottom: 16px;
+
+            ion-label {
+                font-weight: 400;
+                font-size: 1.35rem !important;
+                margin-bottom: 19px !important;
+            }
+
+            ion-input {
+                font-weight: 500 !important;
+                letter-spacing: 0;
+            }
+
+            ion-textarea {
+                margin-top: 0;
+                font-weight: 400 !important;
+                letter-spacing: 0;
+            }
+        }
+    }
+
+}

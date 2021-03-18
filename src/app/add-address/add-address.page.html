@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="title_inner d-flex">
+        <span> {{"add_address" | translate}}</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+  <ion-item>
+    <ion-label mode="md" position="stacked"
+      >{{"search_address" | translate}}</ion-label
+    >
+    <ion-input
+      mode="md"
+      type="text"
+      (keyup)="searchAddress($event)"
+      [(ngModel)]="selectedFinalAddress"
+      placeholder="{{'type_your_address' | translate}}"
+    ></ion-input>
+  </ion-item>
+  <ion-list *ngIf="possibleAddresses.length > 0">
+	<ion-item
+	  *ngFor="let address of possibleAddresses"
+	  (click)="addressSelect(address)"
+	>
+	  <p>{{ address.streetaddress }}, {{ address.city }}, {{ address.state }} {{ address.zipcode }}</p>
+	</ion-item>
+  </ion-list>
+</ion-content>

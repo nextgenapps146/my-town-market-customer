@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+  <div class="page_info">
+    <h2>My Orders</h2>
+  </div>
+  <ion-list lines="none" *ngIf="orders.length > 0">
+    <ion-item
+      [ngClass]="order.faqExpand ? 'active' : '' "
+      *ngFor="let order of orders"
+    >
+      <div class="item_inner">
+        <div class="item_info">
+          <div class="item_header d-flex" (click)="faqExpandToggle(order)">
+            <!-- <div class="img_box center_img">
+                            <img src="assets/images/order_img3.png" class="crop_img">
+                        </div> -->
+            <div class="text_box">
+              <h2>{{ order.storename }}</h2>
+              <h3>{{ order.totalitemsquantity }} Items</h3>
+              <h4 class="d-flex">
+                {{'ordered_on' | translate}} {{ order.orderplaceddate | date:
+                "MM-dd-yyyy" }}
+                <span class="end">
+                  {{'order_id' | translate}} {{ order.id }}
+                </span>
+              </h4>
+            </div>
+          </div>
+          <div class="detail d-flex">
+            <div class="text_box payment" (click)="faqExpandToggle(order)">
+              <h2>{{'payment' | translate}}</h2>
+              <h3>{{ order.totalcharges | currency: 'INR'}}</h3>
+            </div>
+            <div class="text_box payment_mode" (click)="faqExpandToggle(order)">
+              <h2>{{'payment_mode' | translate}}</h2>
+              <h3 *ngIf="order.paymentmode === 'pod'">Cash On Delivery</h3>
+            </div>
+            <div class="text_box order_status end">
+              <h2>{{'order_status' | translate}}</h2>
+              <h3>{{ order.status }}</h3>
+            </div>
+          </div>
+        </div>
+
+        <ion-card (click)="faqExpandToggle(order)">
+          <div class="card_header">
+            <ion-row>
+              <ion-col class="active">
+                <div class="icon_box">
+                  <ion-icon
+                    class="zmdi zmdi-check-all ion-text-center"
+                  ></ion-icon>
+                </div>
+                <p class="ion-text-center">{{'placed' | translate}}</p>
+              </ion-col>
+              <ion-col class="active">
+                <div class="icon_box">
+                  <ion-icon
+                    class="zmdi zmdi-assignment-returned ion-text-center"
+                  ></ion-icon>
+                </div>
+                <p class="ion-text-center">{{'packing' | translate}}</p>
+              </ion-col>
+              <!-- <ion-col class="active">
+                                <div class="icon_box">
+                                    <ion-icon class="zmdi zmdi-bike ion-text-center"></ion-icon>
+                                </div>
+                                <p class="ion-text-center">{{'dispatched' | translate}}</p>
+                            </ion-col> -->
+              <!-- <ion-col class="active">
+                                <div class="icon_box">
+                                    <ion-icon class="zmdi zmdi-navigation ion-text-center"></ion-icon>
+                                </div>
+                                <p class="ion-text-center">{{'track' | translate}}</p>
+                            </ion-col> -->
+              <ion-col>
+                <div class="icon_box">
+                  <ion-icon class="zmdi zmdi-home ion-text-center"></ion-icon>
+                </div>
+                <p class="ion-text-center">{{'delivered' | translate}}</p>
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <div class="ordered_items">
+            <h2>{{'ordered_items' | translate}}</h2>
+            <div class="item" *ngFor="let item of order.items">
+              <h3 class="d-flex">
+                {{ item.name }} <span class="end">{{ item.saleprice | currency: 'INR'}}</span>
+              </h3>
+              <h2>{{'qnt' | translate}}. {{ item.orderQuantity }}</h2>
+            </div>
+          </div>
+
+          <div class="payment_details">
+            <h3 class="d-flex">
+              {{'delivery_fee' | translate}} <span class="end">0.00</span>
+            </h3>
+            <h3 class="d-flex">
+              {{'promocode' | translate}} <span class="end">- 0.00</span>
+            </h3>
+            <h2 class="d-flex">
+              {{'amount_to_pay' | translate}}
+              <span class="end">{{ order.totalcharges | currency: 'INR'}}</span>
+            </h2>
+          </div>
+        </ion-card>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none" *ngIf="orders.length === 0"> No orders </ion-list>
+</ion-content>

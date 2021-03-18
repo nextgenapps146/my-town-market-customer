@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="dismiss()">
+      <ion-icon name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="banner">
+		<div class="logo">
+			<img src="assets/images/userlogo.png">
+		</div>
+    </div> -->
+  <div class="page_info">
+    <h1>My Town Market</h1>
+    <p>
+      Browse and Buy Products from you favorite local stores and get it
+      delivered right to your door.
+    </p>
+  </div>
+  <div class="form">
+    <ion-list lines="none">
+      <!-- <ion-item lines="none" >
+				<ion-label mode="md" position="stacked">{{"select_country" | translate}}</ion-label>
+				<ion-select mode="md" placeholder="{{'select_country' | translate}}" cancelText="{{'cancel' | translate}}" okText="{{'done' | translate}}">
+					<ion-select-option value="1">Brazil</ion-select-option>
+					<ion-select-option value="2">India</ion-select-option>
+					<ion-select-option value="3">Ireland</ion-select-option>
+					<ion-select-option value="4">Japan</ion-select-option>
+					<ion-select-option value="5">Kenya</ion-select-option>
+					<ion-select-option value="6">Latvia</ion-select-option>
+					<ion-select-option value="7">Martinique</ion-select-option>
+					<ion-select-option value="8">Mexico</ion-select-option>
+					<ion-select-option value="9">Monaco</ion-select-option>
+					<ion-select-option value="10">Nepal</ion-select-option>
+				</ion-select>
+			</ion-item> -->
+      <ion-item lines="none" *ngIf="!isOTPRequested">
+        <ion-label mode="md" position="stacked"
+          >{{"phone_number" | translate}}</ion-label
+        >
+        <ion-input
+          mode="md"
+          type="number"
+          placeholder="{{'enter_phone_number' | translate}}"
+          [(ngModel)]="phoneNumber"
+        ></ion-input>
+      </ion-item>
+      <ion-item lines="none" *ngIf="isOTPRequested">
+        <ion-label mode="md" position="stacked"
+          >{{"otp" | translate}}</ion-label
+        >
+        <ion-input
+          mode="md"
+          type="number"
+          placeholder="{{'enter_otp' | translate}}"
+          [(ngModel)]="otp"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+  <ion-button
+    size="large"
+    expand="full"
+    class="btn"
+    (click)="sign_in()"
+    *ngIf="!isOTPRequested"
+    >{{'continue' | translate}}</ion-button
+  >
+  <ion-button
+    size="large"
+    expand="full"
+    class="btn"
+    (click)="confirm_otp()"
+    *ngIf="isOTPRequested && !enableResend"
+    >{{"confirm_otp" | translate}}</ion-button
+  >
+  <ion-button
+    size="large"
+    expand="full"
+    class="btn"
+    (click)="sign_in()"
+    *ngIf="isOTPRequested && enableResend"
+    >{{"resend_otp" | translate}}</ion-button
+  >
+  <p class="ion-text-center" *ngIf="!isOTPRequested">
+    {{"we_ll_send_otp_for_vefification" | translate}}
+  </p>
+
+  <p class="ion-text-center" *ngIf="isOTPRequested && remainingSecond > 0">
+    {{"resend_otp" | translate}}<span *ngIf="remainingSecond > 0"
+      >&nbsp;in {{remainingSecond}} sec</span
+    >
+  </p>
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border">
+	<h2 class="ion-text-center">{{"or_continue_with" | translate}}</h2>
+	<ion-row>
+		<ion-col size="6">
+				<ion-button size="large" expand="full" class="btn facebook" (click)="home()">{{'facebook' | translate}}</ion-button>
+		</ion-col>
+
+		<ion-col size="6">
+				<ion-button size="large" expand="full" class="btn google" (click)="home()">{{'google' | translate}}</ion-button>
+		</ion-col>
+	</ion-row>
+</ion-footer> -->

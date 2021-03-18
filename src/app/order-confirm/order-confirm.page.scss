@@ -1,0 +1,109 @@
+.order_steps {
+    padding: 24px 20px 20px 20px;
+
+    ion-row {
+        align-items: center;
+
+        ion-col {
+            max-width: 20% !important;
+            min-width: 20% !important;
+            opacity: .4;
+
+            ion-icon {
+                color: var(--primary);
+                display: block;
+                margin: 0 auto;
+                font-size: 1.55rem;
+                text-align: center;
+            }
+
+            h3 {
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                margin: 0 auto;
+
+
+                ion-icon {
+                    font-size: 0.4rem;
+                    margin: 0 2px;
+                    height: 10px;
+                    line-height: 10px;
+                }
+            }
+
+            &.active {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.container {
+    padding: 0 15px;
+    padding-top: 65px;
+
+    .img_box {
+        max-width: 280px;
+        margin: 0 auto;
+        width: 100%;
+        margin-bottom: 42px;
+    }
+
+    .text_box {
+        width: 100%;
+
+        h2 {
+            margin: 0;
+            color: var(--text-black);
+            font-weight: 700;
+            font-size: 1.4rem;
+            padding-bottom: 27px;
+        }
+
+        p {
+            margin: 0;
+            color: var(--text-dark-primary);
+            font-size: 1rem;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            margin: 0;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+ion-footer {
+    .button.btn {
+        height: 55px;
+    }
+}
+
+
+@media (max-height: 680px) {
+    .container {
+        padding-top: 20px !important;
+
+        .img_box {
+            max-width: 233px !important;
+            margin-bottom: 15px !important;
+        }
+    }
+}
+
+@media (max-height: 650px) {
+    .container {
+        padding-top: 20px !important;
+
+        .img_box {
+            max-width: 233px !important;
+            margin-bottom: 15px !important;
+        }
+    }
+}

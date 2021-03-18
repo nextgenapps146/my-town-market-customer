@@ -1,0 +1,105 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="page_info">
+        <h2>Payment Mode</h2>
+    </div>
+    <div class="order_steps">
+		<ion-row>
+			<ion-col class="active">
+				<ion-icon class="zmdi zmdi-pin"></ion-icon>
+			</ion-col>
+			<ion-col class="active">
+				<h3>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+				</h3>
+			</ion-col>
+			<ion-col class="active">
+				<ion-icon class="zmdi zmdi-card"></ion-icon>
+			</ion-col>
+			<ion-col>
+				<h3>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+					<ion-icon class="zmdi zmdi-circle"></ion-icon>
+				</h3>
+			</ion-col>
+			<ion-col>
+				<ion-icon class="zmdi zmdi-assignment-check"></ion-icon>
+			</ion-col>
+		</ion-row>
+	</div>
+	<ion-list lines="none">
+		<!-- <ion-item>
+			<div class="item_inner">
+				<h2>{{'cards' | translate}}</h2>
+				<div class="payment_option d-flex" (click)="pay()">
+					<div class="img_box center_img">
+						<img src="assets/images/ic_card.png" class="crop_img">
+					</div>
+					<h3>Credit Card</h3>
+				</div>
+
+				<div class="payment_option d-flex" (click)="pay()">
+					<div class="img_box center_img">
+						<img src="assets/images/ic_card.png" class="crop_img">
+					</div>
+					<h3>Debit Card</h3>
+				</div>
+			</div>
+		</ion-item> -->
+
+
+		<ion-item>
+			<div class="item_inner">
+				<h2>{{'cash' | translate}}</h2>
+				<div class="payment_option d-flex" (click)="pay()">
+					<div class="img_box center_img">
+						<img src="assets/images/cod.png" class="crop_img">
+					</div>
+					<h3>Cash on Delivery</h3>
+				</div>
+			</div>
+		</ion-item>
+
+		<!-- <ion-item>
+			<div class="item_inner">
+				<h2>{{'other_methods' | translate}}</h2>
+				<div class="payment_option d-flex" (click)="pay()">
+					<div class="img_box center_img">
+						<img src="assets/images/paypal.png" class="crop_img">
+					</div>
+					<h3>PayPal</h3>
+				</div>
+
+				<div class="payment_option d-flex" (click)="pay()">
+					<div class="img_box center_img">
+						<img src="assets/images/PayU.png" class="crop_img">
+					</div>
+					<h3>PayU Money</h3>
+				</div>
+
+				<div class="payment_option d-flex" (click)="pay()">
+					<div class="img_box center_img">
+						<img src="assets/images/stripe.png" class="crop_img">
+					</div>
+					<h3>Stripe</h3>
+				</div>
+			</div>
+		</ion-item> -->
+	</ion-list>
+</ion-content>

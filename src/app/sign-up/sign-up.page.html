@@ -1,0 +1,60 @@
+<!-- <ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'register' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header> -->
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-icon name="close"></ion-icon>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="page_info">
+        <h2>Register</h2>
+    </div>
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"full_name" | translate}}</ion-label>
+				<ion-input mode="md" type="name" [(ngModel)]="username" placeholder="{{'enter_full_name' | translate}}"></ion-input>
+			</ion-item>
+
+			<!-- <ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"email_address" | translate}}</ion-label>
+				<ion-input mode="md" type="email" placeholder="{{'enter_email_address' | translate}}"></ion-input>
+			</ion-item>
+			<ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"select_country" | translate}}</ion-label>
+				<ion-select mode="md" placeholder="{{'select_country' | translate}}" cancelText="{{'cancel' | translate}}" okText="{{'done' | translate}}">
+					<ion-select-option value="1">Brazil</ion-select-option>
+					<ion-select-option value="2">India</ion-select-option>
+					<ion-select-option value="3">Ireland</ion-select-option>
+					<ion-select-option value="4">Japan</ion-select-option>
+					<ion-select-option value="5">Kenya</ion-select-option>
+					<ion-select-option value="6">Latvia</ion-select-option>
+					<ion-select-option value="7">Martinique</ion-select-option>
+					<ion-select-option value="8">Mexico</ion-select-option>
+					<ion-select-option value="9">Monaco</ion-select-option>
+					<ion-select-option value="10">Nepal</ion-select-option>
+				</ion-select>
+			</ion-item> -->
+
+			<!-- <ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"phone_number" | translate}}</ion-label>
+				<ion-input mode="md" type="number" placeholder="+91-9949221232"></ion-input>
+			</ion-item> -->
+
+		</ion-list>
+    </div>
+	<ion-button size="large" expand="full" class="btn" (click)="onSubmit()">{{'submit' | translate}}</ion-button>
+</ion-content>
+
+<!-- <ion-footer class="ion-mo-border">
+		<ion-button size="large" expand="full" class="btn" (click)="verification()">{{'continue' | translate}}</ion-button>
+</ion-footer> -->

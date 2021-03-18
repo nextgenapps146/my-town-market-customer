@@ -1,0 +1,188 @@
+ @font-face {
+ 	font-family: 'Google Sans';
+ 	src: url('../assets/font/GoogleSans-Italic.woff2') format('woff2'),
+ 		url('../assets/font/GoogleSans-Italic.woff') format('woff');
+ 	font-weight: normal;
+ 	font-style: italic;
+ }
+
+ @font-face {
+ 	font-family: 'Google Sans';
+ 	src: url('../assets/font/GoogleSans-Regular.woff2') format('woff2'),
+ 		url('../assets/font/GoogleSans-Regular.woff') format('woff');
+ 	font-weight: normal;
+ 	font-style: normal;
+ }
+
+ @font-face {
+ 	font-family: 'Google Sans';
+ 	src: url('../assets/font/GoogleSans-BoldItalic.woff2') format('woff2'),
+ 		url('../assets/font/GoogleSans-BoldItalic.woff') format('woff');
+ 	font-weight: bold;
+ 	font-style: italic;
+ }
+
+ @font-face {
+ 	font-family: 'Google Sans';
+ 	src: url('../assets/font/GoogleSans-Bold.woff2') format('woff2'),
+ 		url('../assets/font/GoogleSans-Bold.woff') format('woff');
+ 	font-weight: bold;
+ 	font-style: normal;
+ }
+
+ @font-face {
+ 	font-family: 'Google Sans';
+ 	src: url('../assets/font/GoogleSans-MediumItalic.woff2') format('woff2'),
+ 		url('../assets/font/GoogleSans-MediumItalic.woff') format('woff');
+ 	font-weight: 500;
+ 	font-style: italic;
+ }
+
+ @font-face {
+ 	font-family: 'Google Sans';
+ 	src: url('../assets/font/GoogleSans-Medium.woff2') format('woff2'),
+ 		url('../assets/font/GoogleSans-Medium.woff') format('woff');
+ 	font-weight: 500;
+ 	font-style: normal;
+ }
+
+ @font-face {
+    font-family: 'iconsminds';
+    src: url('../assets/font/iconsmind-s/font/iconsminds.eot?38435065');
+    src: url('../assets/font/iconsmind-s/font/iconsminds.eot?38435065#iefix') format('embedded-opentype'),
+         url('../assets/font/iconsmind-s/font/iconsminds.woff?38435065') format('woff'),
+         url('../assets/font/iconsmind-s/font/iconsminds.ttf?38435065') format('truetype'),
+         url('../assets/font/iconsmind-s/font/iconsminds.svg?38435065#iconsminds') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+ *,
+ body,
+ html,
+ p,
+ span,
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6,
+ strong,
+ li {
+ 	--ion-font-family: 'Google Sans';
+ 	font-family: 'Google Sans';
+ }
+
+ .zmdi {
+ 	font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+ }
+
+ ion-menu {
+ 	// --background: url(../assets/images/img_menu.png) 0 0/100% 100% no-repeat;
+ 	// --width: calc(100% - 50px);
+
+ 	ion-content {
+ 		--background: rgba(0, 0, 0, 0) !important;
+
+ 	}
+
+ 	.profile_box {
+        padding: 65px 34px 48px 34px;
+        border-bottom: 1px solid;
+        margin-bottom: 20px;
+
+ 		h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--text-dark-secondary);
+
+ 			span {
+ 				display: block;
+ 			}
+         }
+
+         h4 {
+            margin: 0;
+            color: var(--text-dark-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            padding-bottom: 3px;
+         }
+
+ 	}
+
+ 	ion-list {
+ 		background: var(--transparent) !important;
+ 		padding: 0;
+ 		width: calc(100% - 20px);
+ 		margin: 0 auto;
+ 		position: relative;
+ 		z-index: 999;
+
+ 		ion-item {
+ 			padding: 17px 27px;
+ 			--inner-padding-end: 0px;
+ 			--inner-min-height: unset !important;
+ 			--padding-start: 0;
+ 			--highligh-color-focused: var(--transparent) !important;
+ 			--background: var(--transparent);
+ 			--min-height: unset;
+ 			--background: var(--transparent) !important;
+ 			--background-activated: var(--transparent) !important;
+ 			--background-activated-opacity: 1;
+ 			--background-hover: var(--transparent) !important;
+ 			--ripple-color: var(--transparent) !important;
+
+ 			ion-icon {
+ 				font-size: 1.4rem;
+ 				min-width: 47px;
+ 				color: var(--primary);
+ 			}
+
+ 			h2 {
+ 				margin: 0;
+ 				color: var(--secondary);
+ 				font-weight: 500;
+ 				font-size: 1rem;
+ 				letter-spacing: 2px;
+ 				text-transform: uppercase;
+ 			}
+ 		}
+
+ 		.buy_this_app {
+ 			background: var(--white);
+ 			position: relative;
+ 			bottom: 0px;
+ 			right: 0px;
+ 			border-radius: 50px;
+ 			height: 49px;
+ 			display: flex;
+ 			align-items: center;
+ 			min-width: 170px;
+ 			z-index: 99999;
+ 			margin: 16px 21px;
+ 			width: fit-content;
+
+ 			h2 {
+ 				color: var(--primary);
+ 				display: flex;
+ 				align-items: center;
+ 				margin: auto;
+ 				width: fit-content;
+ 				font-size: 1rem;
+ 				font-weight: 500;
+ 				padding: 0;
+
+ 				ion-icon {
+ 					font-size: 1.3rem;
+ 					min-width: 29px;
+ 				}
+ 			}
+ 		}
+ 	}
+
+ }

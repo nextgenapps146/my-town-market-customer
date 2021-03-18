@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="location">
+      <div (click)="changeLocation()">
+        <div class="city">{{ city }}</div>
+        <div class="locality">
+          {{ locality }}
+          <ion-icon name="arrow-down"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="right_icons" slot="end">
+      <span class="end search_icon" (click)="search()">
+        <ion-icon name="search"></ion-icon>
+      </span>
+      <span class="end" (click)="show_notifications()" *ngIf="isLoggedIn">
+        <ion-icon name="notifications"></ion-icon>
+        <ion-badge *ngIf="newNotificationCount > 0">{{ newNotificationCount }}</ion-badge>
+      </span>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="page_info">
+    <h1>My Town Market</h1>
+    <p>
+      Browse and Buy Products from you favorite local stores and get it
+      delivered right to your door.
+    </p>
+  </div>
+
+  <div class="text-3 mt-4" *ngIf="visitedStores.length > 0">
+    Recently Visited
+  </div>
+  <div class="list" *ngIf="visitedStores.length > 0">
+    <div
+      class="item"
+      (click)="goToShop(store)"
+      *ngFor="let store of visitedStores"
+    >
+      <div class="text-4">{{ store.name }}</div>
+      <div class="text-5">{{ store.streetaddress }}</div>
+      <span class="optns" *ngIf="store.isdelivery">Delivery</span>
+      <span class="optns" *ngIf="store.iscurbsidepickup">Pickup</span>
+    </div>
+  </div>
+
+  <div class="text-3 mt-4">Stores in {{ locality }}</div>
+  <div class="list" *ngIf="nearbyStores.length > 0">
+    <div
+      class="item"
+      (click)="goToShop(store)"
+      *ngFor="let store of nearbyStores"
+    >
+      <div class="text-4">{{ store.name }}</div>
+      <div class="text-5">{{ store.streetaddress }}</div>
+      <span class="optns" *ngIf="store.isdelivery">Delivery</span>
+      <span class="optns" *ngIf="store.iscurbsidepickup">Pickup</span>
+    </div>
+  </div>
+  <div class="list" *ngIf="nearbyStores.length === 0">No nearby stores</div>
+  <div class="text-3 mt-4">Business Categories</div>
+  <div class="biz_cat_container">
+    <ion-row>
+      <ion-col size="6">
+        <div class="biz-cat">
+          <i class="iconsminds-tomato"></i>
+          <h3>Grocery Stores</h3>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="biz-cat">
+          <i class="iconsminds-fish"></i>
+          <h3>Meat Shops</h3>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="biz-cat">
+          <i class="iconsminds-chopsticks"></i>
+          <h3>Resturants</h3>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="biz-cat">
+          <i class="iconsminds-fish"></i>
+          <h3>Meat Shops</h3>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="biz-cat-slider">
+    <div class="biz-cat">
+      <i class="iconsminds-tomato"></i>
+      <h3>Grocery Stores</h3>
+    </div>
+    <div class="biz-cat">
+      <i class="iconsminds-fish"></i>
+      <h3>Meat Shops</h3>
+    </div>
+    <div class="biz-cat">
+      <i class="iconsminds-chopsticks"></i>
+      <h3>Resturants</h3>
+    </div>
+    <div class="biz-cat">
+      <i class="iconsminds-fish"></i>
+      <h3>Meat Shops</h3>
+    </div>
+    <div class="biz-cat">
+      <i class="iconsminds-tomato"></i>
+      <h3>Grocery Stores</h3>
+    </div>
+    <div class="biz-cat">
+      <i class="iconsminds-fish"></i>
+      <h3>Meat Shops</h3>
+    </div>
+    <div class="biz-cat">
+      <i class="iconsminds-chopsticks"></i>
+      <h3>Resturants</h3>
+    </div>
+    <div class="biz-cat">
+      <i class="iconsminds-fish"></i>
+      <h3>Meat Shops</h3>
+    </div>
+  </div>
+</ion-content>

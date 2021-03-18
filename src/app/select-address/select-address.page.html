@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page_info">
+    <h2>Select Address</h2>
+  </div>
+  <div class="order_steps">
+    <ion-row>
+      <ion-col class="active">
+        <ion-icon class="zmdi zmdi-pin"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <h3>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+        </h3>
+      </ion-col>
+      <ion-col>
+        <ion-icon class="zmdi zmdi-card"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <h3>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+          <ion-icon class="zmdi zmdi-circle"></ion-icon>
+        </h3>
+      </ion-col>
+      <ion-col>
+        <ion-icon class="zmdi zmdi-assignment-check"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-card>
+    <div class="form">
+      <ion-label>Delivery Type</ion-label>
+      <ion-list lines="none" *ngIf="isLoggedIn">
+        <ion-radio-group
+          name="address selection"
+          [(ngModel)]="selectedDelivery"
+        >
+          <ion-item>
+            <div class="item_inner d-flex">
+              <ion-radio value="delivery"></ion-radio>
+              <div class="text_box">
+                <p>Delivery</p>
+              </div>
+            </div>
+          </ion-item>
+          <ion-item>
+            <div class="item_inner d-flex">
+              <ion-radio value="curbside"></ion-radio>
+              <div class="text_box">
+                <p>Pickup</p>
+              </div>
+            </div>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-label
+        *ngIf="isLoggedIn && selectedDelivery === 'delivery' && addresses.length > 0"
+        >Delivery Address</ion-label
+      >
+      <ion-list
+        lines="none"
+        *ngIf="isLoggedIn && selectedDelivery === 'delivery' && addresses.length > 0"
+      >
+        <ion-radio-group name="address selection" [(ngModel)]="selectedAddress">
+          <ion-item *ngFor="let address of addresses; let i = index">
+            <div class="item_inner d-flex">
+              <ion-radio [value]="address.fullAddress"></ion-radio>
+              <div class="text_box">
+                <p>{{ address.fullAddress }}</p>
+              </div>
+            </div>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list
+        *ngIf="isLoggedIn && selectedDelivery === 'delivery' && addresses.length === 0"
+      >
+        <ion-item lines="none">
+          <div class="item_inner">
+            <div class="text_box">
+              <p>
+                <ion-button
+                  size="large"
+                  shape="full"
+                  class="btn"
+                  (click)="add_address()"
+                >
+                  {{'add_address' | translate}}
+                </ion-button>
+              </p>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <ion-list *ngIf="!isLoggedIn">
+        <ion-item lines="none">
+          <div class="item_inner">
+            <div class="text_box">
+              <p>
+                <ion-button
+                  size="large"
+                  shape="full"
+                  class="btn"
+                  (click)="login()"
+                >
+                  {{'login' | translate}}
+                </ion-button>
+              </p>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-card>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-button
+    size="large"
+    shape="full"
+    class="btn"
+    (click)="payment_mode()"
+    [disabled]="selectedDelivery === '' || (selectedDelivery === 'delivery' && selectedAddress.length === 0)"
+  >
+    {{'continue' | translate}}
+  </ion-button>
+</ion-footer>

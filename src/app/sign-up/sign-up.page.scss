@@ -1,0 +1,30 @@
+ion-header ion-toolbar {
+	ion-buttons ion-back-button {
+		--icon-font-size: 2.3rem !important;
+	}
+	ion-title{
+		font-size: 1.12rem;
+		letter-spacing: .5px;
+	}
+}
+
+.form {
+	padding-top: 61px;
+
+	p {
+		margin: 0;
+		color: var(--text-dark-primary);
+		font-weight: 500;
+		font-size: 1.15rem;
+		line-height: 24px;
+		padding-bottom: 37px;
+	}
+}
+
+.form {
+	padding-bottom: 17px;
+}
+
+.button.btn {
+    padding: 0 15px;
+}

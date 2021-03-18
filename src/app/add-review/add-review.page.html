@@ -1,0 +1,55 @@
+<ion-header class="bg_transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			{{'add_review' | translate}}
+		</ion-title>
+	</ion-toolbar>
+	<div class="banner">
+		<div class="img_box center_img">
+			<img src="assets/images/1.png" class="crop_img">
+		</div>
+		<div class="text_box ion-text-center">
+			<h2>Fresh Red Onions</h2>
+			<h3>Jonathon Farms</h3>
+		</div>
+	</div>
+</ion-header>
+
+<ion-content fullscreen>
+	<div class="give_rating ion-text-center">
+		<h2>{{'how_was_your_experience' | translate}}?</h2>
+		<div class="icon_box">
+
+			<span [ngClass]="ratingIcon1 ? 'icon_box active' : 'icon_box'" (click)="toggleRatingIcon1()"> 
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</span>
+			<span [ngClass]="ratingIcon2 ? 'icon_box active' : 'icon_box'" (click)="toggleRatingIcon2()"> 
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</span>
+			<span [ngClass]="ratingIcon3 ? 'icon_box active' : 'icon_box'" (click)="toggleRatingIcon3()"> 
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</span>
+			<span [ngClass]="ratingIcon4 ? 'icon_box active' : 'icon_box'" (click)="toggleRatingIcon4()"> 
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</span>
+			<span [ngClass]="ratingIcon5 ? 'icon_box active' : 'icon_box'" (click)="toggleRatingIcon5()"> 
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</span>
+		</div>
+	</div>
+
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-label mode="md" position="stacked">{{"write_your_feedback" | translate}}</ion-label>
+				<ion-textarea rows="1" mode="md" type="text" placeholder="{{'enter_your_review' | translate}}"></ion-textarea>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>
+<ion-footer class="ion-no-border">
+	<ion-button size="large" shape="full" class="btn" (click)="presentToast()"> {{'submit' | translate}} </ion-button>
+</ion-footer>
