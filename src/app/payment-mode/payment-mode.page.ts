@@ -4,6 +4,8 @@ import { NotificationService } from "src/services/notification.service";
 import { OrderService } from "src/services/order.service";
 import { UtilityService } from "src/services/utility.service";
 
+import { WebIntent } from '@ionic-native/web-intent/ngx';
+
 @Component({
   selector: "app-payment-mode",
   templateUrl: "./payment-mode.page.html",
@@ -18,12 +20,20 @@ export class PaymentModePage implements OnInit {
   qpMap: any;
   orderStatus = "";
 
+  payeeVPA: string;
+  payeeName: string;
+  transactionNote: string = 'Payment for Groceries';
+  payAmount: number;
+  currency: string = 'INR';
+  transactionReference: string;
+
   constructor(
     private navCtrl: NavController,
     private alertController: AlertController,
     private utils: UtilityService,
     private orderService: OrderService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private webIntent: WebIntent
   ) {}
 
   ngOnInit() {
@@ -58,6 +68,162 @@ export class PaymentModePage implements OnInit {
     });
     await alert.present();
   }
+
+  async paytm() {
+    const alert = await this.alertController.create({
+      cssClass: "",
+      header: "Confirm!",
+      message: "Are you sure you want to place the order?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "",
+          handler: () => {},
+        },
+        {
+          text: "Okay",
+          handler: () => {
+    let packages = {
+      'paytm': 'net.one97.paytm',
+      'google': 'com.google.android.apps.nbu.paisa.user',
+      'whatsapp': 'com.whatsapp'
+  };
+  this.payeeVPA = '7095959589@ybl';
+  this.payeeName = 'MyTownMarket';
+  this.payAmount =20;
+  this.transactionReference = '87148172'; //ORDER ID or Something similar
+  const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
+  const options = {
+      action: this.webIntent.ACTION_VIEW,
+      url,
+      package: packages.paytm
+  };
+  this.webIntent.startActivityForResult(options).then(success => {
+    console.log(success);
+    if(success.extras.Status == 'SUCCESS') {
+      // SUCCESS RESPONSE
+    } else if(success.extras.Status == 'SUBMITTED') {
+      // SUBMITTED RESPONSE
+    } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
+      // FAILED RESPONSE
+    } else {
+      // FAILED RESPONSE
+    }
+  }, error => {
+    console.log(error);
+  });
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
+ async googlepay() {
+    const alert = await this.alertController.create({
+      cssClass: "",
+      header: "Confirm!",
+      message: "Are you sure you want to place the order?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "",
+          handler: () => {},
+        },
+        {
+          text: "Okay",
+          handler: () => {
+           
+    let packages = {
+      'paytm': 'net.one97.paytm',
+      'google': 'com.google.android.apps.nbu.paisa.user',
+      'whatsapp': 'com.whatsapp'
+  };
+  this.payeeVPA = '7095959589@ybl';
+  this.payeeName = 'MyTownMarket';
+  this.payAmount = 20;
+  this.transactionReference = '87148172'; //ORDER ID or Something similar
+  const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
+  const options = {
+      action: this.webIntent.ACTION_VIEW,
+      url,
+      package: packages.google
+  };
+  this.webIntent.startActivityForResult(options).then(success => {
+    console.log(success);
+    if(success.extras.Status == 'SUCCESS') {
+      // SUCCESS RESPONSE
+    } else if(success.extras.Status == 'SUBMITTED') {
+      // SUBMITTED RESPONSE
+    } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
+      // FAILED RESPONSE
+    } else {
+      // FAILED RESPONSE
+    }
+  }, error => {
+    console.log(error);
+  });
+          },
+        },
+      ],
+    });
+    await alert.present();
+}
+
+async phonepe() {
+  const alert = await this.alertController.create({
+    cssClass: "",
+    header: "Confirm!",
+    message: "Are you sure you want to place the order?",
+    buttons: [
+      {
+        text: "Cancel",
+        role: "cancel",
+        cssClass: "",
+        handler: () => {},
+      },
+      {
+        text: "Okay",
+        handler: () => {
+          
+  let packages = {
+    'paytm': 'net.one97.paytm',
+    'google': 'com.google.android.apps.nbu.paisa.user',
+    'phonepe': 'com.phonepe.app'
+};
+this.payeeVPA = '7095959589@ybl';
+this.payeeName = 'MyTownMarket';
+this.payAmount = 20;
+this.transactionReference = '87148172'; //ORDER ID or Something similar
+const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
+const options = {
+    action: this.webIntent.ACTION_VIEW,
+    url,
+    package: packages.phonepe
+};
+this.webIntent.startActivityForResult(options).then(success => {
+  console.log(success);
+  if(success.extras.Status == 'SUCCESS') {
+    // SUCCESS RESPONSE
+  } else if(success.extras.Status == 'SUBMITTED') {
+    // SUBMITTED RESPONSE
+  } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
+    // FAILED RESPONSE
+  } else {
+    // FAILED RESPONSE
+  }
+}, error => {
+  console.log(error);
+});
+        },
+      },
+    ],
+  });
+  await alert.present();
+}
+
 
   confirm() {
     let finalOrder = {};

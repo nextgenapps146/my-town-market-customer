@@ -22,6 +22,8 @@ import { FirebaseX } from "@ionic-native/firebase-x/ngx";
 import { FirebaseAuthentication } from "@ionic-native/firebase-authentication/ngx";
 import { ComponentsModule } from './components/components.module';
 
+import { WebIntent } from '@ionic-native/web-intent/ngx';
+
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
@@ -55,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         FirebaseAuthentication,
         { provide: APP_CONFIG, useValue: BaseAppConfig },
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        WebIntent
         
     ],
     bootstrap: [AppComponent]
