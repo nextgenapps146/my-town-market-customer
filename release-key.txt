@@ -1,2 +1,2 @@
-alias: release-key
-password: Id<icjef
+alias: alias_name
+password: october2017

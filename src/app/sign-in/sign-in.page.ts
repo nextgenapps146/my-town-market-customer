@@ -4,6 +4,9 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/services/auth.service";
 import { UtilityService } from "src/services/utility.service";
 import { FCMService } from "src/services/fcm.service";
+import { AngularFirestore } from "@angular/fire/firestore";
+
+import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic";
 
 @Component({
   selector: "app-sign-in",
@@ -26,7 +29,8 @@ export class SignInPage {
     private authService: AuthService,
     private utilityService: UtilityService,
     private route: Router,
-    private fcmService: FCMService
+    private fcmService: FCMService,
+    private afs: AngularFirestore
   ) {}
 
   home() {
@@ -98,7 +102,15 @@ export class SignInPage {
 
   checkUser(info) {
     localStorage.setItem("uid", info["uid"]);
-    this.fcmService.getToken()
+    FCM.getToken().then((token) => {
+      console.log(token);
+      if (
+        localStorage.getItem("uid") !== null &&
+        localStorage.getItem("uid") !== undefined
+      ) {
+        this.saveTokenToFirestore(token, localStorage.getItem("uid"));
+      }
+    });
     this.authService.checkUser(info.uid).subscribe((res) => {
       this.isOTPRequested = false;
       this.otp = "";
@@ -147,5 +159,14 @@ export class SignInPage {
     } else {
       this.route.navigate(["home"]);
     }
+  }
+  saveTokenToFirestore(token, uid) {
+    if (!token) return;
+    const devicesRef = this.afs.collection("devices");
+    const docData = {
+      token,
+      userid: uid,
+    };
+    return devicesRef.doc(uid).set(docData);
   }
 }

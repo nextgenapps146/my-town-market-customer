@@ -20,6 +20,8 @@ import { Router } from "@angular/router";
 import { FirebaseX } from "@ionic-native/firebase-x/ngx";
 import { FCMService } from "src/services/fcm.service";
 
+import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic";
+
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -114,7 +116,20 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-     
+
+      FCM.onNotification().subscribe((data) => {
+        console.log(data);
+        if (data.wasTapped) {
+          console.log("Received in background");
+        } else {
+          console.log("Received in foreground");
+        }
+      });
+
+      // refresh the FCM token
+      FCM.onTokenRefresh().subscribe((token) => {
+        console.log(token);
+      });
 
       const defaultLang = window.localStorage.getItem(
         Constants.KEY_DEFAULT_LANGUAGE
@@ -165,11 +180,11 @@ export class AppComponent implements OnInit {
     // .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
     // .catch(error => console.error('Error getting token', error));
 
-  this.firebaseX.onMessageReceived()
-    .subscribe(data => console.log(`User opened a notification ${data}`));
+  // this.firebaseX.onMessageReceived()
+  //   .subscribe(data => console.log(`User opened a notification ${data}`));
   
-  this.firebaseX.onTokenRefresh()
-    .subscribe((token: string) => console.log(`Got a new token ${token}`));
+  // this.firebaseX.onTokenRefresh()
+  //   .subscribe((token: string) => console.log(`Got a new token ${token}`));
   }
 
   getLocalInfo() {

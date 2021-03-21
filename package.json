@@ -54,7 +54,6 @@
     "codelyzer": "^5.1.2",
     "cordova-android": "^9.0.0",
     "cordova-ios": "^6.2.0",
-    "cordova-plugin-android-safetynet": "^1.0.2",
     "cordova-plugin-androidx": "^3.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-device": "^2.0.2",
@@ -80,7 +79,8 @@
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "androidx.browser:browser:1.2.0"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -132,8 +132,7 @@
         "ANDROID_GRADLE_TOOLS_VERSION": "3.5.3",
         "ANDROID_GOOGLE_SERVICES_VERSION": "4.3.3",
         "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/ic_launcher"
-      },
-      "cordova-plugin-android-safetynet": {}
+      }
     },
     "platforms": [
       "android"

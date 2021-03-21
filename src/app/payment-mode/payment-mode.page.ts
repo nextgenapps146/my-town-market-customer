@@ -82,6 +82,8 @@ export class PaymentModePage implements OnInit {
     finalOrder["deliverytype"] = this.selectedDelivery;
     finalOrder["specialinstruction"] = this.specialInstruction;
     finalOrder["orderaddress"] = this.selectedAddress;
+        finalOrder["storeadmin"] = "r0IV6yjYXKf6cV90YCPcUTPcvx32";
+        // finalOrder["storeadmin"] = localStorage.getItem("storeadmin");
     
 
     console.log (finalOrder) // added to check error
