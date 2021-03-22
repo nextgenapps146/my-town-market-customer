@@ -1,7 +1,8 @@
 pipeline {
    agent any
       environment {
-         PATH='C:\Program Files\nodejs\node_modules\npm\bin'
+         PATH='C:\Program Files\nodejs\node_modules\npm\bin',
+         PATH='C:\Program Files\Java\jre1.8.0_281\bin'
       }
    stages {
       stage('NPM Setup') {
