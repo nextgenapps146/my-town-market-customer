@@ -69,8 +69,8 @@ workflows:
             - |
                 # install dependencies and update to Cordova version 9
                 npm install
-                cvm install 9.0.0
-                cvm use 9.0.0
+                npm install 9.0.0
+                npm use 9.0.0
             - |
                 # Setup Cordova Android platform
                 ionic cordova platform remove android --nosave
