@@ -1,8 +1,15 @@
 pipeline {
    agent any
       environment {
-         PATH='C:\Program Files\nodejs\node_modules\npm\bin',
-         PATH='C:\Program Files\Java\jre1.8.0_281\bin'
+        set ANDROID_HOME=C:\Users\rishi\AppData\Local\Android\Sdk
+        set NODEJS_HOME=C:\Program Files\nodejs
+        set NPM_HOME=C:\Users\rishi\AppData\Roaming\npm
+        set CI=true
+        set PATH=C:\Windows\System32
+        set PATH=C:\Program Files\Java\jdk1.8.0_281\bin
+        set PATH=C:\Program Files\nodejs\node_modules\npm
+        set PATH=C:\Users\rishi\AppData\Roaming\npm\node_modules
+        set PATH=C:\Users\rishi\AppData\Local\Android\Sdk\build-tools\30.0.3
       }
    stages {
       stage('NPM Setup') {
