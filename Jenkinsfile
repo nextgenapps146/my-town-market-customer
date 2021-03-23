@@ -1,13 +1,12 @@
 pipeline {
    agent any
 
-   tools {nodejs "node"}
+   tools {node}
       environment {
        set ANDROID_HOME=C:\android\sdk
  set NODEJS_HOME=C:\nodejs
  set NPM_HOME=%NODEJS_HOME%\npmroot
  set CI=true
- CI = 'true'
  set PATH=%SystemRoot%\system32;%SystemRoot%
  set PATH=%JAVA_HOME%\bin;%PATH%
  set PATH=%NODEJS_HOME%;%PATH%
@@ -18,7 +17,7 @@ pipeline {
    stages {
       stage('NPM Setup') {
       steps {
-         bat 'npm install'
+         sh 'npm install'
       }
    }
 
@@ -30,13 +29,13 @@ pipeline {
 
    stage('Android Build') {
    steps {
-      bat 'ionic cordova build android --release'
+     sh 'ionic cordova build android --release'
    }
   }
 
    stage('APK Sign') {
    steps {
-      bat 'jarsigner -storepass october -keystore keys/my-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk MyTownMarket'
+      sh 'jarsigner -storepass october -keystore keys/my-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk MyTownMarket'
    }
    }
 
