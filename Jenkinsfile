@@ -1,20 +1,24 @@
 pipeline {
    agent any
-    //   environment {
-    //     set ANDROID_HOME=C:\Users\rishi\AppData\Local\Android\Sdk
-    //     set NODEJS_HOME=C:\Program Files\nodejs
-    //     set NPM_HOME=C:\Users\rishi\AppData\Roaming\npm
-    //     set CI=true
-    //     set PATH=C:\Windows\System32
-    //     set PATH=C:\Program Files\Java\jdk1.8.0_281\bin
-    //     set PATH=C:\Program Files\nodejs\node_modules\npm
-    //     set PATH=C:\Users\rishi\AppData\Roaming\npm\node_modules
-    //     set PATH=C:\Users\rishi\AppData\Local\Android\Sdk\build-tools\30.0.3
-    //   }
+
+   tools {nodejs "node"}
+      environment {
+       set ANDROID_HOME=C:\android\sdk
+ set NODEJS_HOME=C:\nodejs
+ set NPM_HOME=%NODEJS_HOME%\npmroot
+ set CI=true
+ CI = 'true'
+ set PATH=%SystemRoot%\system32;%SystemRoot%
+ set PATH=%JAVA_HOME%\bin;%PATH%
+ set PATH=%NODEJS_HOME%;%PATH%
+ set PATH=%NPM_HOME%;%PATH%
+ set PATH=%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools;%ANDROID_HOME%\tools\bin;%PATH%
+ set BUILD_DIR=%WORKSPACE%\..\builds%BUILD_ID%\build
+      }
    stages {
       stage('NPM Setup') {
       steps {
-         sh 'npm install'
+         bat 'npm install'
       }
    }
 
@@ -26,13 +30,13 @@ pipeline {
 
    stage('Android Build') {
    steps {
-      sh 'ionic cordova build android --release'
+      bat 'ionic cordova build android --release'
    }
   }
 
    stage('APK Sign') {
    steps {
-      sh 'jarsigner -storepass october -keystore keys/my-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk MyTownMarket'
+      bat 'jarsigner -storepass october -keystore keys/my-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk MyTownMarket'
    }
    }
 
