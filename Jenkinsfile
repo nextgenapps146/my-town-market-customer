@@ -1,41 +1,72 @@
 pipeline {
-  agent any
-  stages {
-    stage('Initialize') {
-      parallel {
-        stage('Git') {
-          steps {
-            git  'https://github.com/nextgenapps146/my-town-market-customer.git'
-          }
-        }
-
-        stage('Tools') {
-          steps {
-            withNPM(npmrcConfig: 'npm install')
-            tool(name: 'jdk1.9.0_281', type: 'C:\\Program Files\\Java\\jdk1.8.0_281')
-          }
-        }
-
-        stage('Ionic Cordova') {
-          steps {
-            bat 'npm install -g ionic cordova'
-          }
-        }
-
-      }
-    }
-
-    stage('Build') {
+   agent any
+// tools {
+//     jdk 'jdk1.8.0_281',
+//     NodeJs 'Node'
+//     Gradle 'Gradle'
+// }
+     
+   stages {
+      stage('NPM Setup') {
       steps {
-        bat 'ionic cordova build ios --release'
+          git  'https://github.com/nextgenapps146/my-town-market-customer.git'
+          nodejs(Node){
+         bat 'npm install'
+          }
       }
-    }
-
-    stage('Signing Apk') {
+   }
+     stage('ionic') {
       steps {
-        signAndroidApks(androidHome: 'C:\\Users\\rishi\\AppData\\Local\\Android\\Sdk', apksToSign: 'my-town-market-customer', keyAlias: 'alias_name', keyStoreId: 'my-release-key.keystore', zipalignPath: 'C:\\Users\\rishi\\AppData\\Local\\Android\\Sdk\\build-tools\\30.0.3\\zipalign.exe')
+          nodejs(Node){
+              echo 'Ionic'
+         bat 'npm install -g ionic cordova'
+          }
       }
-    }
+   }
 
+//    stage('IOS Build') {
+//    steps {
+//       bat 'ionic cordova build ios --release'
+//      } 
+//   }
+
+   stage('Android Build') {
+   steps {
+       JDK(jdk){
+     bat 'ionic cordova build android --release'
+       }
+   }
   }
+
+   stage('APK Sign') {
+   steps {
+      bat 'jarsigner -storepass october2017 -keystore my-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk alias_name'
+   }
+   }
+
+//    stage('Stage Web Build') {
+//       steps {
+//         bat 'npm run build --prod'
+//     }
+//   }
+
+//    stage('Publish Firebase Web') {
+//       steps {
+//       bat 'firebase deploy --token "Your Token Key"'
+//    }
+//   }
+
+//    stage('Publish iOS') {
+//       steps {
+//        echo "Publish iOS Action"
+//     }
+//    }
+
+//    stage('Publibat Android') {
+//      steps {
+//     echo "Publibat Android API Action"
+//    }
+//   }
+
+ }
 }
