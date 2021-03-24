@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('Git') {
           steps {
-            bat 'git  \'https://github.com/nextgenapps146/my-town-market-customer.git\''
+            git  'https://github.com/nextgenapps146/my-town-market-customer.git'
           }
         }
 
@@ -16,7 +16,7 @@ pipeline {
           }
         }
 
-        stage('Ionci Cordova') {
+        stage('Ionic Cordova') {
           steps {
             bat 'npm install -g ionic cordova'
           }
@@ -36,6 +36,6 @@ pipeline {
         signAndroidApks(androidHome: 'C:\\Users\\rishi\\AppData\\Local\\Android\\Sdk', apksToSign: 'my-town-market-customer', keyAlias: 'alias_name', keyStoreId: 'my-release-key.keystore', zipalignPath: 'C:\\Users\\rishi\\AppData\\Local\\Android\\Sdk\\build-tools\\30.0.3\\zipalign.exe')
       }
     }
-
+    
   }
 }
