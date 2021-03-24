@@ -18,7 +18,7 @@ pipeline {
 
         stage('Ionci Cordova') {
           steps {
-            bat ' bat \'npm install -g ionic cordova\''
+            bat 'npm install -g ionic cordova'
           }
         }
 
@@ -27,7 +27,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'bat \'ionic cordova build ios --release\''
+        bat 'ionic cordova build ios --release\'
       }
     }
 
