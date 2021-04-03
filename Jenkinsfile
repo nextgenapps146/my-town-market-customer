@@ -9,6 +9,7 @@ pipeline {
    stages {
       stage('NPM Setup') {
       steps {
+         
           git  'https://github.com/nextgenapps146/my-town-market-customer.git'
           nodejs(Node){
          bat 'npm install'

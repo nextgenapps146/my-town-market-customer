@@ -17,8 +17,8 @@ import { APP_CONFIG, AppConfig } from "./app.config";
 import { SignInPage } from "./sign-in/sign-in.page";
 import { AuthService } from "src/services/auth.service";
 import { Router } from "@angular/router";
-import { FirebaseX } from "@ionic-native/firebase-x/ngx";
-import { FCMService } from "src/services/fcm.service";
+// import { FirebaseX } from "@ionic-native/firebase-x/ngx";
+// import { FCMService } from "src/services/fcm.service";
 
 import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic";
 
@@ -101,8 +101,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private myEvent: MyEvent,
-    private firebaseX: FirebaseX,
-    private fcmService: FCMService
    
     ) {
     this.initializeApp();

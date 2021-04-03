@@ -7,12 +7,57 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:497015051371:android:83e359cd8588a52e9c8d2e",
+        "android_client_info": {
+          "package_name": "mytownmarket.admin.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497015051371-st66ogt9jj24ib2vcdq50j33l01r75cm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mytownmarket.admin.com",
+            "certificate_hash": "10cda2a74f2b7a710be2ea8e5df3e380a393824d"
+          }
+        },
+        {
+          "client_id": "497015051371-g3ecg4mh4q2btf482s3um3oelvfmslgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJxqb-pEF2E6tWT4AddE4b-1DJLyVA_5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497015051371-g3ecg4mh4q2btf482s3um3oelvfmslgg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:497015051371:android:d43ca2254cfcb4f89c8d2e",
         "android_client_info": {
           "package_name": "mytownmarket.customer.com"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "497015051371-jne9or10l4anp6sdsi9pt6vmkki0af3f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mytownmarket.customer.com",
+            "certificate_hash": "10cda2a74f2b7a710be2ea8e5df3e380a393824d"
+          }
+        },
         {
           "client_id": "497015051371-g3ecg4mh4q2btf482s3um3oelvfmslgg.apps.googleusercontent.com",
           "client_type": 3

@@ -241,15 +241,15 @@ this.webIntent.startActivityForResult(options).then(success => {
     finalOrder["customerid"] = this.uid;
     finalOrder["storeid"] = localStorage.getItem("storeid");
     finalOrder["storename"] = localStorage.getItem("storename");
-    finalOrder["storeadminid"] = localStorage.getItem("storeadmin");
+    // finalOrder["storeadminid"] = localStorage.getItem("storeadmin");
     finalOrder["status"] = "Pending";
     finalOrder["deliverystatus"] = "nd"; // means not delivered
     finalOrder["paymentmode"] = this.selectedPayment;
     finalOrder["deliverytype"] = this.selectedDelivery;
     finalOrder["specialinstruction"] = this.specialInstruction;
     finalOrder["orderaddress"] = this.selectedAddress;
-        finalOrder["storeadmin"] = "r0IV6yjYXKf6cV90YCPcUTPcvx32";
-        // finalOrder["storeadmin"] = localStorage.getItem("storeadmin");
+        // finalOrder["storeadmin"] = "r0IV6yjYXKf6cV90YCPcUTPcvx32";
+        finalOrder["storeadmin"] = localStorage.getItem("storeadmin");
     
 
     console.log (finalOrder) // added to check error
@@ -262,7 +262,7 @@ this.webIntent.startActivityForResult(options).then(success => {
         this.utils.setQPMap({});
         let notification = {
           from: this.uid,
-          to: JSON.parse(localStorage.getItem("storeadmin")),
+          to: localStorage.getItem("storeadmin"),
           type: "order",
           status: "new",
           orderid: randomNumber,

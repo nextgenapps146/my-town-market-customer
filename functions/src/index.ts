@@ -8,6 +8,9 @@ export const notifySellerOnNewOrder = functions.firestore
   .onCreate((snap, context) => {
     const order = snap.data();
     const storeAdmin = order.storeadmin;
+    const orderid = order.id;
+    // const orderid = order.customerid;
+    console.log(storeAdmin);
     const db = admin.firestore();
     const deviceRef = db.collection("devices").doc(storeAdmin);
     deviceRef
@@ -17,14 +20,16 @@ export const notifySellerOnNewOrder = functions.firestore
           const data = doc.data();
           if (data) {
             const token = data.token;
+            console.log(token);
             const payload = {
               notification: {
                 title: "New Order",
-                body: "from abc location xyz",
-                icon: "",
+                body: orderid,
+                icon: "https://firebasestorage.googleapis.com/v0/b/my-town-market.appspot.com/o/favicon.png?alt=media&token=a50a979b-d9a7-47f8-aaaf-08805345d87c",
               },
             };
-            return admin.messaging().sendToDevice(token, payload);
+            const options = { priority: 'high'};
+            return admin.messaging().sendToDevice(token, payload,options);
           }
         }
         return null

@@ -3,7 +3,7 @@ import { ModalController, NavController } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { AuthService } from "src/services/auth.service";
 import { UtilityService } from "src/services/utility.service";
-import { FCMService } from "src/services/fcm.service";
+// import { FCMService } from "src/services/fcm.service";
 import { AngularFirestore } from "@angular/fire/firestore";
 
 import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic";
@@ -29,7 +29,7 @@ export class SignInPage {
     private authService: AuthService,
     private utilityService: UtilityService,
     private route: Router,
-    private fcmService: FCMService,
+
     private afs: AngularFirestore
   ) {}
 

@@ -182,7 +182,7 @@ export class HomePage {
     } else {
       localStorage.setItem("storeid", this.selectedStore.id);
       localStorage.setItem("storename", this.selectedStore.name);
-      localStorage.setItem("storeadmin", JSON.stringify(this.selectedStore.adminid));
+      localStorage.setItem("storeadmin",this.selectedStore.adminid);
       localStorage.setItem("bizcat", this.selectedStore.bizcat);
       if (this.uid !== undefined && this.uid !== null) {
         let tempIndex = -1;
