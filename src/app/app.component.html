@@ -58,6 +58,19 @@
               </div>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item
+              mode="ios"
+              detail="false"
+              [routerDirection]="'root'"
+              [routerLink]="'/terms'"
+            >
+              <div class="item_inner d-flex">
+                <ion-icon slot="start" class="zmdi zmdi-file-text"></ion-icon>
+                <h2>Terms and Conditions</h2>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" *ngIf="isLoggedIn">
             <ion-item
               mode="ios"

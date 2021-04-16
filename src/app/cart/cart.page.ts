@@ -36,6 +36,7 @@ export class CartPage {
       this.totalItems = this.qpMap["totalQuantity"];
       this.totalPrice = this.qpMap["totalPrice"];
       this.finalPrice = this.totalPrice + this.discount + this.deliveryFee;
+      this.utils.finalprice = this.finalPrice;
     });
   }
 
@@ -46,6 +47,7 @@ export class CartPage {
 
   select_address() {
     if (this.isLoggedIn) {
+      this.utils.finalprice = this.finalPrice;
       this.route.navigate(["./select-address"]);
     } else {
       this.route.navigate(["./sign-in"]);

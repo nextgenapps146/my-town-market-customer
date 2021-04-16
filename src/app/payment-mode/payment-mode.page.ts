@@ -40,7 +40,7 @@ export class PaymentModePage implements OnInit {
     this.uid = localStorage.getItem("uid");
     this.selectedAddress = localStorage.getItem(this.uid + "selectedaddress");
     this.selectedDelivery = localStorage.getItem(this.uid + "selecteddelivery");
-    this.selectedPayment = "pod";
+    this.selectedPayment = localStorage.getItem(this.uid + 'selectedpayment')
     this.utils.getQPMap().subscribe((val) => {
       this.qpMap = val;
     });
@@ -89,9 +89,9 @@ export class PaymentModePage implements OnInit {
       'google': 'com.google.android.apps.nbu.paisa.user',
       'whatsapp': 'com.whatsapp'
   };
-  this.payeeVPA = '7095959589@ybl';
+  this.payeeVPA = '7095959589@okbizaxis';
   this.payeeName = 'MyTownMarket';
-  this.payAmount =20;
+  this.payAmount =this.utils.finalprice;
   this.transactionReference = '87148172'; //ORDER ID or Something similar
   const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
   const options = {
@@ -103,11 +103,17 @@ export class PaymentModePage implements OnInit {
     console.log(success);
     if(success.extras.Status == 'SUCCESS') {
       // SUCCESS RESPONSE
+      this.confirm();
+      this.utils.showToast("Payment Successful");
     } else if(success.extras.Status == 'SUBMITTED') {
       // SUBMITTED RESPONSE
     } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
       // FAILED RESPONSE
+      this.orderStatus = "Payment Failed";
+        this.utils.showToast("Sorry! Some problem in placing your order");
     } else {
+      this.orderStatus = "Payment Failed";
+        this.utils.showToast("Sorry! Some problem in placing your order");
       // FAILED RESPONSE
     }
   }, error => {
@@ -120,109 +126,120 @@ export class PaymentModePage implements OnInit {
     await alert.present();
   }
 
- async googlepay() {
-    const alert = await this.alertController.create({
-      cssClass: "",
-      header: "Confirm!",
-      message: "Are you sure you want to place the order?",
-      buttons: [
-        {
-          text: "Cancel",
-          role: "cancel",
-          cssClass: "",
-          handler: () => {},
-        },
-        {
-          text: "Okay",
-          handler: () => {
+//  async googlepay() {
+//     const alert = await this.alertController.create({
+//       cssClass: "",
+//       header: "Confirm!",
+//       message: "Are you sure you want to place the order?",
+//       buttons: [
+//         {
+//           text: "Cancel",
+//           role: "cancel",
+//           cssClass: "",
+//           handler: () => {},
+//         },
+//         {
+//           text: "Okay",
+//           handler: () => {
            
-    let packages = {
-      'paytm': 'net.one97.paytm',
-      'google': 'com.google.android.apps.nbu.paisa.user',
-      'whatsapp': 'com.whatsapp'
-  };
-  this.payeeVPA = '7095959589@ybl';
-  this.payeeName = 'MyTownMarket';
-  this.payAmount = 20;
-  this.transactionReference = '87148172'; //ORDER ID or Something similar
-  const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
-  const options = {
-      action: this.webIntent.ACTION_VIEW,
-      url,
-      package: packages.google
-  };
-  this.webIntent.startActivityForResult(options).then(success => {
-    console.log(success);
-    if(success.extras.Status == 'SUCCESS') {
-      // SUCCESS RESPONSE
-    } else if(success.extras.Status == 'SUBMITTED') {
-      // SUBMITTED RESPONSE
-    } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
-      // FAILED RESPONSE
-    } else {
-      // FAILED RESPONSE
-    }
-  }, error => {
-    console.log(error);
-  });
-          },
-        },
-      ],
-    });
-    await alert.present();
-}
+//     let packages = {
+//       'paytm': 'net.one97.paytm',
+//       'google': 'com.google.android.apps.nbu.paisa.user',
+//       'whatsapp': 'com.whatsapp'
+//   };
+//   this.payeeVPA = '7095959589@okbizaxis';
+//   this.payeeName = 'MyTownMarket';
+//   this.payAmount = this.utils.finalprice;
+//   this.transactionReference = '87148172'; //ORDER ID or Something similar
+//   const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
+//   const options = {
+//       action: this.webIntent.ACTION_VIEW,
+//       url,
+//       package: packages.google
+//   };
+//   this.webIntent.startActivityForResult(options).then(success => {
+//     console.log(success);
+//     if(success.extras.Status == 'SUCCESS') {
+//       // SUCCESS RESPONSE
+//       this.confirm();
+//       this.utils.showToast("Payment Successful");
+//     } else if(success.extras.Status == 'SUBMITTED') {
+//       // SUBMITTED RESPONSE
+//     } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
+//       // FAILED RESPONSE
+//       this.orderStatus = "Payment Failed";
+//         this.utils.showToast("Sorry! Some problem in placing your order");
+//     } else {
+//       // FAILED RESPONSE
+//       this.orderStatus = "Payment Failed";
+//         this.utils.showToast("Sorry! Some problem in placing your order");
+//     }
+//   }, error => {
+//     console.log(error);
+//   });
+//           },
+//         },
+//       ],
+//     });
+//     await alert.present();
+// }
 
-async phonepe() {
-  const alert = await this.alertController.create({
-    cssClass: "",
-    header: "Confirm!",
-    message: "Are you sure you want to place the order?",
-    buttons: [
-      {
-        text: "Cancel",
-        role: "cancel",
-        cssClass: "",
-        handler: () => {},
-      },
-      {
-        text: "Okay",
-        handler: () => {
+// async phonepe() {
+//   const alert = await this.alertController.create({
+//     cssClass: "",
+//     header: "Confirm!",
+//     message: "Are you sure you want to place the order?",
+//     buttons: [
+//       {
+//         text: "Cancel",
+//         role: "cancel",
+//         cssClass: "",
+//         handler: () => {},
+//       },
+//       {
+//         text: "Okay",
+//         handler: () => {
           
-  let packages = {
-    'paytm': 'net.one97.paytm',
-    'google': 'com.google.android.apps.nbu.paisa.user',
-    'phonepe': 'com.phonepe.app'
-};
-this.payeeVPA = '7095959589@ybl';
-this.payeeName = 'MyTownMarket';
-this.payAmount = 20;
-this.transactionReference = '87148172'; //ORDER ID or Something similar
-const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
-const options = {
-    action: this.webIntent.ACTION_VIEW,
-    url,
-    package: packages.phonepe
-};
-this.webIntent.startActivityForResult(options).then(success => {
-  console.log(success);
-  if(success.extras.Status == 'SUCCESS') {
-    // SUCCESS RESPONSE
-  } else if(success.extras.Status == 'SUBMITTED') {
-    // SUBMITTED RESPONSE
-  } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
-    // FAILED RESPONSE
-  } else {
-    // FAILED RESPONSE
-  }
-}, error => {
-  console.log(error);
-});
-        },
-      },
-    ],
-  });
-  await alert.present();
-}
+//   let packages = {
+//     'paytm': 'net.one97.paytm',
+//     'google': 'com.google.android.apps.nbu.paisa.user',
+//     'phonepe': 'com.phonepe.app'
+// };
+// this.payeeVPA = '7095959589@okbizaxis';
+// this.payeeName = 'MyTownMarket';
+// this.payAmount = this.utils.finalprice;
+// this.transactionReference = '87148172'; //ORDER ID or Something similar
+// const url = 'upi://pay?pa=' + this.payeeVPA + '&pn=' + this.payeeName + '&tr=' + this.transactionReference + 'tn=' + this.transactionNote + '&am=' + this.payAmount + '&cu=' + this.currency;
+// const options = {
+//     action: this.webIntent.ACTION_VIEW,
+//     url,
+//     package: packages.phonepe
+// };
+// this.webIntent.startActivityForResult(options).then(success => {
+//   console.log(success);
+//   if(success.extras.Status == 'SUCCESS') {
+//     // SUCCESS RESPONSE 
+//     this.confirm();
+//     this.utils.showToast("Payment Successful");
+//   } else if(success.extras.Status == 'SUBMITTED') {
+//     // SUBMITTED RESPONSE
+//   } else if(success.extras.Status == 'Failed' || success.extras.Status == 'FAILURE') {
+//     // FAILED RESPONSE
+//     this.orderStatus = "Payment Failed";
+//         this.utils.showToast("Sorry! Some problem in placing your order");
+//   } else {
+//     // FAILED RESPONSE
+    
+//   }
+// }, error => {
+//   console.log(error);
+// });
+//         },
+//       },
+//     ],
+//   });
+//   await alert.present();
+// }
 
 
   confirm() {

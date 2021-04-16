@@ -66,6 +66,11 @@ export class AppComponent implements OnInit {
       icon: "zmdi zmdi-alert-circle",
     },
     {
+      title: "terms",
+      url: "/terms",
+      icon: "zmdi zmdi-file-text",
+    },
+    {
       title: "my_wishlist",
       url: "/wishlist",
       icon: "zmdi zmdi-favorite",

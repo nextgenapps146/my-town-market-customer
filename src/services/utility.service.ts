@@ -7,7 +7,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class UtilityService {
   quantitiesAndProductsMap = new BehaviorSubject<any>({});
-
+  finalprice =0;
   constructor(public toast: ToastController) {}
 
   getQPMap(): BehaviorSubject<any> {

@@ -229,9 +229,14 @@ const routes: Routes = [
       import("./notifications/notifications.module").then(
         (m) => m.NotificationsPageModule
       ),
-  },  {
+  },
+  {
     path: 'faq',
     loadChildren: () => import('./faq/faq.module').then( m => m.FaqPageModule)
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('./terms/terms.module').then( m => m.TermsPageModule)
   },
 
 ];
